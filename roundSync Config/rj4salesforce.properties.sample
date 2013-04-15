@@ -1,0 +1,135 @@
+##################################################################################################################
+#                               Relational Junction for Salesforce Properties                                    #
+#                                       Mon Nov 05 13:32:37 EST 2012                                             #
+##################################################################################################################
+##############################
+#       License Keys         #
+##############################
+licenseKey=<<licence key here>>
+licenseKey2=
+##############################
+#      User Connections      #
+##############################
+sfdcUser=<<user name here>>
+sfdcPassword=<<password and token here>>
+sfdcUser1=
+sfdcPassword1=
+sfdcUser2=
+sfdcPassword2=
+sfdcUser3=
+sfdcPassword3=
+sfdcUser4=
+sfdcPassword4=
+sfdcUser5=
+sfdcPassword5=
+sfdcUser6=
+sfdcPassword6=
+sfdcUser7=
+sfdcPassword7=
+sfdcUser8=
+sfdcPassword8=
+sfdcUser9=
+sfdcPassword9=
+sfdcUser10=
+sfdcPassword10=
+sfdcUser11=
+sfdcPassword11=
+numberConcurentLogins=3
+##############################
+#    Salesforce Connection   #
+##############################
+connectUrl=
+http.proxyHost=
+http.proxyPort=
+http.proxyUser=
+http.proxyPassword=
+http.proxyKeyStore=
+http.proxyKeyStorePassword=
+http.proxyTrustStore=
+http.proxyTrustStorePassword=
+##############################
+#     Database Connection    #
+##############################
+dbms=MySql
+JDBCDriver=com.mysql.jdbc.Driver
+protocol=jdbc:mysql
+host=<<enter database server here (external address)>>
+port=3306
+database=<<enter database name here>>
+sid=false
+schema=<<enter database schema here (often the same as the database name)>>
+user=<<enter a database user name>>
+password=<<enter the password for that user>>
+instanceName=
+systemOfRecord=false
+##############################
+#       Database Design      #
+##############################
+tableSpace=
+tableSpaceIndex=
+tableSpaceLob=
+dbPartitioning=false
+singleByte=true
+maxVarChar=1000
+tablePrefix=
+customFieldSuffix=false
+globalReservedWords=true
+formulaFields=true
+autoAdjustWidth=true
+downloadStrict=false
+downloadConfig=
+uploadConfig=
+trackHistory=false
+##############################
+#  Global Objects Selection  #
+##############################
+includeStandard=true
+includeCustom=true
+includeChatter=false
+includeTag=false
+includeHistory=false
+includeShare=false
+##############################
+#   Salesforce Preferences   #
+##############################
+bufferSize=200
+connectionTimeOut=120
+rjTimeOut=10
+intervalMinutes=14400
+defaultAssignmentRule=false
+useTimeStamps=false
+allowFieldTruncation=true
+triggerAutoResponseEmail=false
+triggerUserEmail=false
+parallelUpdate=true
+##############################
+# Logging and File Locations #
+##############################
+logLevel=6
+exportFileDir=export
+rejectLevel=1
+attachmentFileDir=attachment
+fileCompression=false
+tmpFileDir=tmp
+sqlFile=
+retainDays=30
+secureMode=true
+autoClean=true
+##############################
+#        Notification        #
+##############################
+mailTo=stephen.earheart@roundcorner.com
+mailFrom=support@rounccorner.com
+mailHost=smtp.gmail.com
+mailPassword=[9 -97 77 -9 89 39 93 -32 67 107 100 -122 -124 -69 38 12]
+mailPort=587
+mailSubject=roundSync Status
+mailToException=stephen.earheart@roundcorner.com
+mailUser=support@sesamesoftware.com
+useAuth=true
+useTLS=true
+##############################
+#     Selection Criteria     #
+##############################
+lead.orderBy=false
+lead.where=coalesce(ISCONVERTED,'false') = 'false'

@@ -1,0 +1,11 @@
+CALL create_index_if_not_exists(get_table_name('account'), 'ix_account_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG');
+CALL create_index_if_not_exists(get_table_name('account'), 'ix_account_external_id', 'RC_BIOS__external_id (18)');
+CALL create_index_if_not_exists(get_table_name('contact'), 'ix_contact_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG');
+CALL create_index_if_not_exists(get_table_name('contact'), 'ix_contact_pref_contact', 'RC_BIOS__preferred_contact');
+CALL create_index_if_not_exists(get_table_name('contact'), 'ix_contact_active_contact', 'RC_BIOS__active');
+CALL create_index_if_not_exists(get_table_name('rc_bios__address__c'), 'ix_address_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG');
+CALL create_index_if_not_exists(get_table_name('rc_bios__preference__c'), 'ix_preference_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG');
+CALL create_index_if_not_exists(get_table_name('rc_bios__preference__c'), 'ix_preference_category','rc_bios__category, rc_bios__subcategory');
+CALL create_index_if_not_exists(get_table_name('rc_bios__preference__c'), 'ix_preference_type','rc_bios__type, rc_bios__subtype');
+CALL create_index_if_not_exists(get_table_name('rc_bios__relationship__c'), 'ix_relationship_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG');
+CALL create_index_if_not_exists(get_table_name('rc_bios__salutation__c'), 'ix_salutation_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG');

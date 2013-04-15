@@ -1,0 +1,3 @@
+CALL create_index_if_not_exists(get_table_name('rc_connect__campaign_product__c'), 'ix_rc_con_camp_prod_del_flag', 'DELETE_FLAG');
+CALL create_index_if_not_exists(get_table_name('rc_connect__campaign_product__c'), 'ix_rc_con_camp_prod_activity_type', 'rc_connect__activity_type');
+CALL create_index_if_not_exists(get_table_name('rc_connect__campaign_product__c'), 'ix_rc_con_camp_prod_affiliation', 'rc_connect__affiliation');

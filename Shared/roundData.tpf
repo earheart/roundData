@@ -1,0 +1,1431 @@
+<?xml version="1.0"?>
+<ProjectManager>
+  <Item Type="Folder" Caption="My Project" />
+  <Item Type="Folder" Caption="roundData v1.0">
+    <Item Type="FolderItem" FolderItemType="Standard" Caption="roundData">
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Connect">
+        <Item Type="File" Value="C:\roundData\rC_Connect\o_premimum_fulfillment.sql" Caption="o_premimum_fulfillment.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Connect\o_solicitation.sql" Caption="o_solicitation.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Connect\rC_Connect_Indexes.sql" Caption="rC_Connect_Indexes.sql" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving">
+        <Item Type="File" Value="C:\roundData\rC_Giving\Build_GIVING.sql" Caption="Build_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Build_RD_UNIDEF_Giving.sql" Caption="Build_RD_UNIDEF_Giving.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\CREATE_UNIVERSE_GIVING.sql" Caption="CREATE_UNIVERSE_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Populate_RD_UNIDEF_GIVING.sql" Caption="Populate_RD_UNIDEF_GIVING.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="FUNCTIONS">
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_LAST_PAYMENT_DATE.sql" Caption="GIVING_LAST_PAYMENT_DATE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_BALANCE.sql" Caption="GIVING_PLEDGE_BALANCE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_PAST_DUE_BALANCE.sql" Caption="GIVING_PLEDGE_PAST_DUE_BALANCE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\SYS_TRANSLATE.sql" Caption="SYS_TRANSLATE.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Allocation">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Build_GIVING_ALLOCATION.sql" Caption="Build_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Build_RD_UNIDEF_Giving_ALLOCATION.sql" Caption="Build_RD_UNIDEF_Giving_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\CREATE_UNIVERSE_GIVING_ALLOCATION.sql" Caption="CREATE_UNIVERSE_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Populate_RD_UNIDEF_GIVING_ALLOCATION.sql" Caption="Populate_RD_UNIDEF_GIVING_ALLOCATION.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Credit">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Build_GIVING_CREDIT.sql" Caption="Build_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Build_RD_UNIDEF_Giving_Credit.sql" Caption="Build_RD_UNIDEF_Giving_Credit.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\CREATE_UNIVERSE_GIVING_CREDIT.sql" Caption="CREATE_UNIVERSE_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Populate_RD_UNIDEF_GIVING_CREDIT.sql" Caption="Populate_RD_UNIDEF_GIVING_CREDIT.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Item">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Items\Build_GIVING_ITEM.sql" Caption="Build_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Items\Build_RD_UNIDEF_Giving_ITEM.sql" Caption="Build_RD_UNIDEF_Giving_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Items\CREATE_UNIVERSE_GIVING_ITEM.sql" Caption="CREATE_UNIVERSE_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Items\Populate_RD_UNIDEF_GIVING_ITEM.sql" Caption="Populate_RD_UNIDEF_GIVING_ITEM.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary_Annual_Current">
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql" Caption="Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary_Annual_Lifetime">
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+          </Item>
+        </Item>
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving Core Build.tas" Caption="rC_Giving Core Build.tas" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving Core Rebuild.tas" Caption="rC_Giving Core Rebuild.tas" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\views.sql" Caption="views.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving Package Script Initial.tas" Caption="rC_Giving Package Script Initial.tas" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_GIVING_INDEXES.sql" Caption="rC_GIVING_INDEXES.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Giving View Customizations.iok" Caption="Giving View Customizations.iok" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Users">
+        <Item Type="File" Value="C:\roundData\Users\create user.sql" Caption="create user.sql" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Bios">
+        <Item Type="File" Value="C:\roundData\rC_Bios\rC_Bios Core Build.tas" Caption="rC_Bios Core Build.tas" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rC_Bios AccountContact Build.tas" Caption="rC_Bios AccountContact Build.tas" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rC_Bios Core Rebuild.tas" Caption="rC_Bios Core Rebuild.tas" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Functions">
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\CONTACT_PRIMARY_GUID.sql" Caption="CONTACT_PRIMARY_GUID.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\CONTACT_SECONDARY_GUID.sql" Caption="CONTACT_SECONDARY_GUID.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_CATEGORY.sql" Caption="PREFERENCE_CATEGORY.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_TYPE.sql" Caption="PREFERENCE_TYPE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_ACCOUNT.sql" Caption="SALUTATION_INSIDE_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_CONTACT.sql" Caption="SALUTATION_INSIDE_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_ACCOUNT.sql" Caption="SALUTATION_LINE_1_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_CONTACT.sql" Caption="SALUTATION_LINE_1_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_ACCOUNT.sql" Caption="SALUTATION_LINE_2_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_CONTACT.sql" Caption="SALUTATION_LINE_2_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_ACCOUNT.sql" Caption="SALUTATION_LINE_3_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_CONTACT.sql" Caption="SALUTATION_LINE_3_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SYS_TRANSLATE.sql" Caption="SYS_TRANSLATE.sql" />
+        </Item>
+        <Item Type="File" Value="C:\roundData\rC_Bios\Build_Account_Contact.sql" Caption="Build_Account_Contact.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Build_RD_UNIDEF_ACCOUNTCONTACT.sql" Caption="Build_RD_UNIDEF_ACCOUNTCONTACT.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rC_Bios ERD.ter" Caption="rC_Bios ERD.ter" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rc_bios_indexes.sql" Caption="rc_bios_indexes.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\RD_UNIDEF_ACCOUNTCONTACT.sql" Caption="RD_UNIDEF_ACCOUNTCONTACT.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Rename_Account_Contact.sql" Caption="Rename_Account_Contact.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Replace_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Replace_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\SMARTVIEWS.sql" Caption="SMARTVIEWS.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\VIEWS.sql" Caption="VIEWS.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\VIEWS_ACCOUNT.sql" Caption="VIEWS_ACCOUNT.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\VIEWS_ACCOUNTX.sql" Caption="VIEWS_ACCOUNTX.sql" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="ALL">
+        <Item Type="File" Value="C:\roundData\ALL\create_standard_views.sql" Caption="create_standard_views.sql" />
+        <Item Type="File" Value="C:\roundData\ALL\create_standard_views_call.sql" Caption="create_standard_views_call.sql" />
+      </Item>
+    </Item>
+    <Item Type="FolderItem" FolderItemType="Standard" Caption="Automation Scripts">
+      <Item Type="File" Value="C:\roundData\rC_Giving\roundData Initial Build.tas" Caption="roundData Initial Build.tas" />
+    </Item>
+  </Item>
+  <Item Type="Folder" Caption="roundData v1.1" />
+  <Item Type="Folder" Caption="roundData v1.2">
+    <Item Type="FolderItem" FolderItemType="Standard" Caption="roundData">
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Admin">
+        <Item Type="File" Value="C:\roundData\Admin\Data Dictonary.sql" Caption="Data Dictonary.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\get functions.sql" Caption="get functions.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\get views.sql" Caption="get views.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\Manage roundData Dictonary.iok" Caption="Manage roundData Dictonary.iok" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Automation">
+          <Item Type="File" Value="C:\roundData\Admin\Automation\roundData Universe Build.tas" Caption="roundData Universe Build.tas" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="Bios">
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Bios\automation_account_object.sql" Caption="automation_account_object.sql" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="Logs">
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\Build rC_Bios Package Script 1.log" Caption="Build rC_Bios Package Script 1.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\Build rC_Bios Package Script 2.log" Caption="Build rC_Bios Package Script 2.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\rC_Bios Core Rebuild.log" Caption="rC_Bios Core Rebuild.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\rC_Bios Package Script Initial.log" Caption="rC_Bios Package Script Initial.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\rC_Giving Core Build.log" Caption="rC_Giving Core Build.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\roundData Initial Build.log" Caption="roundData Initial Build.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\test1.log" Caption="test1.log" />
+          </Item>
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Monitoring">
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Errors.sql" Caption="CorR_view_rS_Errors.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Last_Synced.sql" Caption="CorR_view_rS_Last_Synced.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Last_Synced_Review.sql" Caption="CorR_view_rS_Last_Synced_Review.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Run_History_by_Day.sql" Caption="CorR_view_rS_Run_History_by_Day.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Run_History_by_Month.sql" Caption="CorR_view_rS_Run_History_by_Month.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Monitoring.iok" Caption="roundSync Monitoring.iok" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Users">
+          <Item Type="File" Value="C:\roundData\Admin\Users\create user.sql" Caption="create user.sql" />
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Bios">
+        <Item Type="File" Value="C:\roundData\rC_Bios\Build_Account_Contact.sql" Caption="Build_Account_Contact.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\CREATE_UNIVERSE_ACCOUNT_CONTACT.sql" Caption="CREATE_UNIVERSE_ACCOUNT_CONTACT.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rC_Bios ERD.ter" Caption="rC_Bios ERD.ter" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rc_bios_indexes.sql" Caption="rc_bios_indexes.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Rename_Account_Contact.sql" Caption="Rename_Account_Contact.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\SMARTVIEWS.sql" Caption="SMARTVIEWS.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="FUNCTIONS">
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\CONTACT_PRIMARY_GUID.sql" Caption="CONTACT_PRIMARY_GUID.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\CONTACT_SECONDARY_GUID.sql" Caption="CONTACT_SECONDARY_GUID.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_CATEGORY.sql" Caption="PREFERENCE_CATEGORY.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_TYPE.sql" Caption="PREFERENCE_TYPE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_ACCOUNT.sql" Caption="SALUTATION_INSIDE_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_CONTACT.sql" Caption="SALUTATION_INSIDE_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_ACCOUNT.sql" Caption="SALUTATION_LINE_1_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_CONTACT.sql" Caption="SALUTATION_LINE_1_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_ACCOUNT.sql" Caption="SALUTATION_LINE_2_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_CONTACT.sql" Caption="SALUTATION_LINE_2_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_ACCOUNT.sql" Caption="SALUTATION_LINE_3_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_CONTACT.sql" Caption="SALUTATION_LINE_3_CONTACT.sql" />
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Connect">
+        <Item Type="File" Value="C:\roundData\rC_Connect\o_premimum_fulfillment.sql" Caption="o_premimum_fulfillment.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Connect\o_solicitation.sql" Caption="o_solicitation.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Connect\rC_Connect_Indexes.sql" Caption="rC_Connect_Indexes.sql" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving">
+        <Item Type="File" Value="C:\roundData\rC_Giving\Build_GIVING.sql" Caption="Build_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Build_RD_UNIDEF_Giving.sql" Caption="Build_RD_UNIDEF_Giving.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\CREATE_UNIVERSE_GIVING.sql" Caption="CREATE_UNIVERSE_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Populate_RD_UNIDEF_GIVING.sql" Caption="Populate_RD_UNIDEF_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving ERD.ter" Caption="rC_Giving ERD.ter" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_GIVING_INDEXES.sql" Caption="rC_GIVING_INDEXES.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Rename_RD_UNIDEF_GIVING.sql" Caption="Rename_RD_UNIDEF_GIVING.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="FUNCTIONS">
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_LAST_PAYMENT_DATE.sql" Caption="GIVING_LAST_PAYMENT_DATE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_BALANCE.sql" Caption="GIVING_PLEDGE_BALANCE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_PAST_DUE_BALANCE.sql" Caption="GIVING_PLEDGE_PAST_DUE_BALANCE.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Allocation">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Build_GIVING_ALLOCATION.sql" Caption="Build_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Build_RD_UNIDEF_Giving_ALLOCATION.sql" Caption="Build_RD_UNIDEF_Giving_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\CREATE_UNIVERSE_GIVING_ALLOCATION.sql" Caption="CREATE_UNIVERSE_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Populate_RD_UNIDEF_GIVING_ALLOCATION.sql" Caption="Populate_RD_UNIDEF_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\rC_Giving_Allocation ERD.ter" Caption="rC_Giving_Allocation ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\rename_giving_allocation.sql" Caption="rename_giving_allocation.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Credit">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Build_GIVING_CREDIT.sql" Caption="Build_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Build_RD_UNIDEF_Giving_Credit.sql" Caption="Build_RD_UNIDEF_Giving_Credit.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\CREATE_UNIVERSE_GIVING_CREDIT.sql" Caption="CREATE_UNIVERSE_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Populate_RD_UNIDEF_GIVING_CREDIT.sql" Caption="Populate_RD_UNIDEF_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\rC_Giving_Credit ERD.ter" Caption="rC_Giving_Credit ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\rename_giving_credit.sql" Caption="rename_giving_credit.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Item">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Build_GIVING_ITEM.sql" Caption="Build_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Build_RD_UNIDEF_Giving_ITEM.sql" Caption="Build_RD_UNIDEF_Giving_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\CREATE_UNIVERSE_GIVING_ITEM.sql" Caption="CREATE_UNIVERSE_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Populate_RD_UNIDEF_GIVING_ITEM.sql" Caption="Populate_RD_UNIDEF_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\rC_Giving_Item ERD.ter" Caption="rC_Giving_Item ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\rename_giving_item.sql" Caption="rename_giving_item.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary_Annual_Current">
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql" Caption="Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\rename_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="rename_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary_Annual_Lifetime">
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\rename_giving_summary_annual_lifetime.sql" Caption="rename_giving_summary_annual_lifetime.sql" />
+          </Item>
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="roundData Documentation">
+        <Item Type="File" Value="C:\roundData\roundData Documentation\Library.data" Caption="Library.data" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Lessons">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="10">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357765743164.png" Caption="media_1357765743164.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357765818610.png" Caption="media_1357765818610.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357765980713.png" Caption="media_1357765980713.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766365268.png" Caption="media_1357766365268.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766439963.png" Caption="media_1357766439963.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766824380.png" Caption="media_1357766824380.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766864509.png" Caption="media_1357766864509.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766953229.png" Caption="media_1357766953229.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357767271578.png" Caption="media_1357767271578.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357769687665.png" Caption="media_1357769687665.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357765743164.png" Caption="media_1357765743164.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357765818610.png" Caption="media_1357765818610.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357765980713.png" Caption="media_1357765980713.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766365268.png" Caption="media_1357766365268.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766439963.png" Caption="media_1357766439963.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766824380.png" Caption="media_1357766824380.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766864509.png" Caption="media_1357766864509.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766953229.png" Caption="media_1357766953229.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357767271578.png" Caption="media_1357767271578.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357769687665.png" Caption="media_1357769687665.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="11">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357767750535.png" Caption="media_1357767750535.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357768150775.png" Caption="media_1357768150775.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357768648925.png" Caption="media_1357768648925.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357769051325.png" Caption="media_1357769051325.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357769304473.png" Caption="media_1357769304473.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357769492291.png" Caption="media_1357769492291.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357767750535.png" Caption="media_1357767750535.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357768150775.png" Caption="media_1357768150775.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357768648925.png" Caption="media_1357768648925.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357769051325.png" Caption="media_1357769051325.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357769304473.png" Caption="media_1357769304473.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357769492291.png" Caption="media_1357769492291.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="12" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="13">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Data\media_1357828004127.png" Caption="media_1357828004127.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Data\media_1357828073700.png" Caption="media_1357828073700.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Data\media_1357828122596.png" Caption="media_1357828122596.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Data\media_1357828830277.png" Caption="media_1357828830277.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Media\media_1357828004127.png" Caption="media_1357828004127.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Media\media_1357828073700.png" Caption="media_1357828073700.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Media\media_1357828122596.png" Caption="media_1357828122596.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Media\media_1357828830277.png" Caption="media_1357828830277.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="15" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="17" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="18">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\18\Data\media_1357941457932.png" Caption="media_1357941457932.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\18\Data\media_1357941789229.png" Caption="media_1357941789229.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\18\Media\media_1357941457932.png" Caption="media_1357941457932.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\18\Media\media_1357941789229.png" Caption="media_1357941789229.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="19" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="2">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Data\media_1347048508123.png" Caption="media_1347048508123.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Data\media_1347048908775.png" Caption="media_1347048908775.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Data\media_1347049088965.png" Caption="media_1347049088965.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Data\media_1347049209132.png" Caption="media_1347049209132.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Media\media_1347048508123.png" Caption="media_1347048508123.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Media\media_1347048908775.png" Caption="media_1347048908775.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Media\media_1347049088965.png" Caption="media_1347049088965.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Media\media_1347049209132.png" Caption="media_1347049209132.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="20">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828004127.png" Caption="media_1357828004127.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828073700.png" Caption="media_1357828073700.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828122596.png" Caption="media_1357828122596.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828244573.png" Caption="media_1357828244573.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828501411.png" Caption="media_1357828501411.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828590473.png" Caption="media_1357828590473.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828674971.png" Caption="media_1357828674971.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828004127.png" Caption="media_1357828004127.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828073700.png" Caption="media_1357828073700.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828122596.png" Caption="media_1357828122596.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828244573.png" Caption="media_1357828244573.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828501411.png" Caption="media_1357828501411.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828590473.png" Caption="media_1357828590473.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828674971.png" Caption="media_1357828674971.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="22">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Data\media_1357829694434.png" Caption="media_1357829694434.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Data\media_1357829922510.png" Caption="media_1357829922510.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Data\media_1357830144772.png" Caption="media_1357830144772.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357829694434.png" Caption="media_1357829694434.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357829878235.png" Caption="media_1357829878235.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357829914625.png" Caption="media_1357829914625.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357829922510.png" Caption="media_1357829922510.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357830144772.png" Caption="media_1357830144772.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="23">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Data\media_1357829694434.png" Caption="media_1357829694434.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Data\media_1357829922510.png" Caption="media_1357829922510.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Data\media_1357830690714.png" Caption="media_1357830690714.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Media\media_1357829694434.png" Caption="media_1357829694434.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Media\media_1357829922510.png" Caption="media_1357829922510.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Media\media_1357830690714.png" Caption="media_1357830690714.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="25">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Data\media_1357750508993.png" Caption="media_1357750508993.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Data\media_1357750646210.png" Caption="media_1357750646210.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Data\media_1357750766873.png" Caption="media_1357750766873.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Data\media_1357833127815.png" Caption="media_1357833127815.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Media\media_1357750508993.png" Caption="media_1357750508993.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Media\media_1357750646210.png" Caption="media_1357750646210.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Media\media_1357750766873.png" Caption="media_1357750766873.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Media\media_1357833127815.png" Caption="media_1357833127815.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="27">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\27\Data\media_1357913184328.png" Caption="media_1357913184328.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\27\Media\media_1357913184328.png" Caption="media_1357913184328.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="28">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358361947590.png" Caption="media_1358361947590.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358436565603.png" Caption="media_1358436565603.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358436768537.png" Caption="media_1358436768537.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358462119475.png" Caption="media_1358462119475.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358464112009.png" Caption="media_1358464112009.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358464420400.png" Caption="media_1358464420400.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358361947590.png" Caption="media_1358361947590.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358436565603.png" Caption="media_1358436565603.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358436768537.png" Caption="media_1358436768537.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358462119475.png" Caption="media_1358462119475.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358464112009.png" Caption="media_1358464112009.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358464420400.png" Caption="media_1358464420400.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="29" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="3">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352319643737.png" Caption="media_1352319643737.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352320558694.png" Caption="media_1352320558694.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352320856813.png" Caption="media_1352320856813.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352320999284.png" Caption="media_1352320999284.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352322135262.png" Caption="media_1352322135262.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352322380060.png" Caption="media_1352322380060.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352319643737.png" Caption="media_1352319643737.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352320558694.png" Caption="media_1352320558694.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352320856813.png" Caption="media_1352320856813.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352320999284.png" Caption="media_1352320999284.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352322135262.png" Caption="media_1352322135262.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352322380060.png" Caption="media_1352322380060.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="30">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Data\media_1357937698182.png" Caption="media_1357937698182.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Data\media_1357937879261.png" Caption="media_1357937879261.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Data\media_1357937968141.png" Caption="media_1357937968141.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Data\media_1357938306478.png" Caption="media_1357938306478.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Media\media_1357937698182.png" Caption="media_1357937698182.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Media\media_1357937879261.png" Caption="media_1357937879261.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Media\media_1357937968141.png" Caption="media_1357937968141.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Media\media_1357938306478.png" Caption="media_1357938306478.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="31">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357914490650.png" Caption="media_1357914490650.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915186913.png" Caption="media_1357915186913.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915298258.png" Caption="media_1357915298258.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915364119.png" Caption="media_1357915364119.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915472756.png" Caption="media_1357915472756.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915618425.png" Caption="media_1357915618425.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915648325.png" Caption="media_1357915648325.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357914490650.png" Caption="media_1357914490650.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915186913.png" Caption="media_1357915186913.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915298258.png" Caption="media_1357915298258.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915364119.png" Caption="media_1357915364119.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915472756.png" Caption="media_1357915472756.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915618425.png" Caption="media_1357915618425.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915648325.png" Caption="media_1357915648325.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="32">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\32\Data\media_1358185805751.png" Caption="media_1358185805751.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\32\Data\media_1358186311520.png" Caption="media_1358186311520.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\32\Media\media_1358185805751.png" Caption="media_1358185805751.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\32\Media\media_1358186311520.png" Caption="media_1358186311520.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="33" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="34" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="35" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="36" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="37" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="38" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="39" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="40" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="41" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="42" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="43" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="44" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="45">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Data\media_1358175327850.png" Caption="media_1358175327850.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Data\media_1358175517695.png" Caption="media_1358175517695.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Data\media_1358175657159.png" Caption="media_1358175657159.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Media\media_1358175327850.png" Caption="media_1358175327850.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Media\media_1358175517695.png" Caption="media_1358175517695.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Media\media_1358175657159.png" Caption="media_1358175657159.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="46">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\46\Data\media_1358176907913.png" Caption="media_1358176907913.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\46\Data\media_1358176995817.png" Caption="media_1358176995817.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\46\Media\media_1358176907913.png" Caption="media_1358176907913.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\46\Media\media_1358176995817.png" Caption="media_1358176995817.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="47">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\47\Data\media_1358177098646.png" Caption="media_1358177098646.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\47\Data\media_1358177152836.png" Caption="media_1358177152836.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\47\Media\media_1358177098646.png" Caption="media_1358177098646.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\47\Media\media_1358177152836.png" Caption="media_1358177152836.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="48">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358187564915.png" Caption="media_1358187564915.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358191107541.png" Caption="media_1358191107541.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358191271906.png" Caption="media_1358191271906.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358191460191.png" Caption="media_1358191460191.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358198252026.png" Caption="media_1358198252026.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358187564915.png" Caption="media_1358187564915.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358191107541.png" Caption="media_1358191107541.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358191271906.png" Caption="media_1358191271906.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358191460191.png" Caption="media_1358191460191.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358198252026.png" Caption="media_1358198252026.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="49">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358364211067.png" Caption="media_1358364211067.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358364436774.png" Caption="media_1358364436774.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358364782731.png" Caption="media_1358364782731.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358364914090.png" Caption="media_1358364914090.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358365001824.png" Caption="media_1358365001824.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358365045294.png" Caption="media_1358365045294.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358365460541.png" Caption="media_1358365460541.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358364211067.png" Caption="media_1358364211067.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358364436774.png" Caption="media_1358364436774.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358364782731.png" Caption="media_1358364782731.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358364914090.png" Caption="media_1358364914090.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358365001824.png" Caption="media_1358365001824.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358365045294.png" Caption="media_1358365045294.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358365460541.png" Caption="media_1358365460541.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="50" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="51">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Data\media_1358367670794.png" Caption="media_1358367670794.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Data\media_1358367779643.png" Caption="media_1358367779643.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Data\media_1358368675110.png" Caption="media_1358368675110.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Media\media_1358367670794.png" Caption="media_1358367670794.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Media\media_1358367779643.png" Caption="media_1358367779643.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Media\media_1358368675110.png" Caption="media_1358368675110.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="52">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="7">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358178733199.png" Caption="media_1358178733199.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358180712050.png" Caption="media_1358180712050.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358180798481.png" Caption="media_1358180798481.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358180851097.png" Caption="media_1358180851097.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358180960701.png" Caption="media_1358180960701.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181078110.png" Caption="media_1358181078110.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181448567.png" Caption="media_1358181448567.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181547528.png" Caption="media_1358181547528.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181652836.png" Caption="media_1358181652836.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181808741.png" Caption="media_1358181808741.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181851574.png" Caption="media_1358181851574.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182101761.png" Caption="media_1358182101761.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182259968.png" Caption="media_1358182259968.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182308112.png" Caption="media_1358182308112.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182397603.png" Caption="media_1358182397603.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182528725.png" Caption="media_1358182528725.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358178733199.png" Caption="media_1358178733199.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358180712050.png" Caption="media_1358180712050.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358180798481.png" Caption="media_1358180798481.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358180851097.png" Caption="media_1358180851097.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358180960701.png" Caption="media_1358180960701.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181078110.png" Caption="media_1358181078110.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181448567.png" Caption="media_1358181448567.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181547528.png" Caption="media_1358181547528.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181652836.png" Caption="media_1358181652836.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181808741.png" Caption="media_1358181808741.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181851574.png" Caption="media_1358181851574.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182101761.png" Caption="media_1358182101761.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182259968.png" Caption="media_1358182259968.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182308112.png" Caption="media_1358182308112.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182397603.png" Caption="media_1358182397603.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182528725.png" Caption="media_1358182528725.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="8">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357750508993.png" Caption="media_1357750508993.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357750646210.png" Caption="media_1357750646210.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357750766873.png" Caption="media_1357750766873.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357751472519.png" Caption="media_1357751472519.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357751896415.png" Caption="media_1357751896415.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357752077840.png" Caption="media_1357752077840.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357752197746.png" Caption="media_1357752197746.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357750508993.png" Caption="media_1357750508993.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357750646210.png" Caption="media_1357750646210.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357750766873.png" Caption="media_1357750766873.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357751472519.png" Caption="media_1357751472519.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357751896415.png" Caption="media_1357751896415.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357752077840.png" Caption="media_1357752077840.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357752197746.png" Caption="media_1357752197746.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="9">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756078832.png" Caption="media_1357756078832.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756280067.png" Caption="media_1357756280067.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756399307.png" Caption="media_1357756399307.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756719677.png" Caption="media_1357756719677.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756781298.png" Caption="media_1357756781298.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756078832.png" Caption="media_1357756078832.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756280067.png" Caption="media_1357756280067.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756399307.png" Caption="media_1357756399307.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756719677.png" Caption="media_1357756719677.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756781298.png" Caption="media_1357756781298.png" />
+            </Item>
+          </Item>
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="_Trash">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="Lessons">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="28">
+              <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Data\media_1358434640164.png" Caption="media_1358434640164.png" />
+              </Item>
+              <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Media\media_1358434640164.png" Caption="media_1358434640164.png" />
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Media\media_1358464329775.png" Caption="media_1358464329775.png" />
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Media\media_1358464390502.png" Caption="media_1358464390502.png" />
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Media\media_1358464420460.png" Caption="media_1358464420460.png" />
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="roundSync Config">
+        <Item Type="File" Value="C:\roundData\roundSync Config\rj4salesforce.properties.sample" Caption="rj4salesforce.properties.sample" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Shared">
+        <Item Type="File" Value="C:\roundData\Shared\CorR_Function_get_table_name.sql" Caption="CorR_Function_get_table_name.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_index_if_not_exists.sql" Caption="create_index_if_not_exists.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_standard_views.sql" Caption="create_standard_views.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_standard_views_call.sql" Caption="create_standard_views_call.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\roundData Initial Build.tas" Caption="roundData Initial Build.tas" />
+        <Item Type="File" Value="C:\roundData\Shared\SYS_TRANSLATE.sql" Caption="SYS_TRANSLATE.sql" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Universe Customizations">
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving.iok" Caption="Giving.iok" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="~Development">
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Connect">
+          <Item Type="File" Value="C:\roundData\~Development\rC_Connect\O_ACKNOWLEDGEMENT.sql" Caption="O_ACKNOWLEDGEMENT.sql" />
+          <Item Type="File" Value="C:\roundData\~Development\rC_Connect\o_tax_letter.sql" Caption="o_tax_letter.sql" />
+        </Item>
+      </Item>
+      <Item Type="File" Value="C:\roundData\roundData Initial Build.tas" Caption="roundData Initial Build.tas" />
+      <Item Type="File" Value="C:\roundData\roundData.tpf" Caption="roundData.tpf" />
+    </Item>
+  </Item>
+  <Item Type="Folder" Caption="roundData 1.21">
+    <Item Type="FolderItem" FolderItemType="Standard" Caption="roundData">
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Admin">
+        <Item Type="File" Value="C:\roundData\Admin\Data Dictonary.sql" Caption="Data Dictonary.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\get functions.sql" Caption="get functions.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\get views.sql" Caption="get views.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\Manage roundData Dictonary.iok" Caption="Manage roundData Dictonary.iok" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Automation">
+          <Item Type="File" Value="C:\roundData\Admin\Automation\roundData Universe Build.tas" Caption="roundData Universe Build.tas" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="Bios">
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Bios\automation_account_object.sql" Caption="automation_account_object.sql" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="Logs">
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\Build rC_Bios Package Script 1.log" Caption="Build rC_Bios Package Script 1.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\Build rC_Bios Package Script 2.log" Caption="Build rC_Bios Package Script 2.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\rC_Bios Core Rebuild.log" Caption="rC_Bios Core Rebuild.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\rC_Bios Package Script Initial.log" Caption="rC_Bios Package Script Initial.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\rC_Giving Core Build.log" Caption="rC_Giving Core Build.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\roundData Initial Build.log" Caption="roundData Initial Build.log" />
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\test1.log" Caption="test1.log" />
+          </Item>
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Monitoring">
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Errors.sql" Caption="CorR_view_rS_Errors.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Last_Synced.sql" Caption="CorR_view_rS_Last_Synced.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Last_Synced_Review.sql" Caption="CorR_view_rS_Last_Synced_Review.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Run_History_by_Day.sql" Caption="CorR_view_rS_Run_History_by_Day.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Run_History_by_Month.sql" Caption="CorR_view_rS_Run_History_by_Month.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Monitoring.iok" Caption="roundSync Monitoring.iok" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Users">
+          <Item Type="File" Value="C:\roundData\Admin\Users\create user.sql" Caption="create user.sql" />
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Bios">
+        <Item Type="File" Value="C:\roundData\rC_Bios\Build_Account_Contact.sql" Caption="Build_Account_Contact.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\CREATE_UNIVERSE_ACCOUNT_CONTACT.sql" Caption="CREATE_UNIVERSE_ACCOUNT_CONTACT.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rC_Bios ERD.ter" Caption="rC_Bios ERD.ter" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rc_bios_indexes.sql" Caption="rc_bios_indexes.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Rename_Account_Contact.sql" Caption="Rename_Account_Contact.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\SMARTVIEWS.sql" Caption="SMARTVIEWS.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="FUNCTIONS">
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\CONTACT_PRIMARY_GUID.sql" Caption="CONTACT_PRIMARY_GUID.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\CONTACT_SECONDARY_GUID.sql" Caption="CONTACT_SECONDARY_GUID.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_CATEGORY.sql" Caption="PREFERENCE_CATEGORY.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_TYPE.sql" Caption="PREFERENCE_TYPE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_ACCOUNT.sql" Caption="SALUTATION_INSIDE_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_CONTACT.sql" Caption="SALUTATION_INSIDE_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_ACCOUNT.sql" Caption="SALUTATION_LINE_1_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_CONTACT.sql" Caption="SALUTATION_LINE_1_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_ACCOUNT.sql" Caption="SALUTATION_LINE_2_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_CONTACT.sql" Caption="SALUTATION_LINE_2_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_ACCOUNT.sql" Caption="SALUTATION_LINE_3_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_CONTACT.sql" Caption="SALUTATION_LINE_3_CONTACT.sql" />
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Connect">
+        <Item Type="File" Value="C:\roundData\rC_Connect\o_premimum_fulfillment.sql" Caption="o_premimum_fulfillment.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Connect\o_solicitation.sql" Caption="o_solicitation.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Connect\rC_Connect_Indexes.sql" Caption="rC_Connect_Indexes.sql" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving">
+        <Item Type="File" Value="C:\roundData\rC_Giving\Build_GIVING.sql" Caption="Build_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Build_RD_UNIDEF_Giving.sql" Caption="Build_RD_UNIDEF_Giving.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\CREATE_UNIVERSE_GIVING.sql" Caption="CREATE_UNIVERSE_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Populate_RD_UNIDEF_GIVING.sql" Caption="Populate_RD_UNIDEF_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving ERD.ter" Caption="rC_Giving ERD.ter" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_GIVING_INDEXES.sql" Caption="rC_GIVING_INDEXES.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Rename_RD_UNIDEF_GIVING.sql" Caption="Rename_RD_UNIDEF_GIVING.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="FUNCTIONS">
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_LAST_PAYMENT_DATE.sql" Caption="GIVING_LAST_PAYMENT_DATE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_BALANCE.sql" Caption="GIVING_PLEDGE_BALANCE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_PAST_DUE_BALANCE.sql" Caption="GIVING_PLEDGE_PAST_DUE_BALANCE.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Allocation">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Build_GIVING_ALLOCATION.sql" Caption="Build_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Build_RD_UNIDEF_Giving_ALLOCATION.sql" Caption="Build_RD_UNIDEF_Giving_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\CREATE_UNIVERSE_GIVING_ALLOCATION.sql" Caption="CREATE_UNIVERSE_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Populate_RD_UNIDEF_GIVING_ALLOCATION.sql" Caption="Populate_RD_UNIDEF_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\rC_Giving_Allocation ERD.ter" Caption="rC_Giving_Allocation ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\rename_giving_allocation.sql" Caption="rename_giving_allocation.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Credit">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Build_GIVING_CREDIT.sql" Caption="Build_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Build_RD_UNIDEF_Giving_Credit.sql" Caption="Build_RD_UNIDEF_Giving_Credit.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\CREATE_UNIVERSE_GIVING_CREDIT.sql" Caption="CREATE_UNIVERSE_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Populate_RD_UNIDEF_GIVING_CREDIT.sql" Caption="Populate_RD_UNIDEF_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\rC_Giving_Credit ERD.ter" Caption="rC_Giving_Credit ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\rename_giving_credit.sql" Caption="rename_giving_credit.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Item">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Build_GIVING_ITEM.sql" Caption="Build_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Build_RD_UNIDEF_Giving_ITEM.sql" Caption="Build_RD_UNIDEF_Giving_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\CREATE_UNIVERSE_GIVING_ITEM.sql" Caption="CREATE_UNIVERSE_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Populate_RD_UNIDEF_GIVING_ITEM.sql" Caption="Populate_RD_UNIDEF_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\rC_Giving_Item ERD.ter" Caption="rC_Giving_Item ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\rename_giving_item.sql" Caption="rename_giving_item.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary_Annual_Current">
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql" Caption="Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\rename_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="rename_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary_Annual_Lifetime">
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\rename_giving_summary_annual_lifetime.sql" Caption="rename_giving_summary_annual_lifetime.sql" />
+          </Item>
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="roundData Documentation">
+        <Item Type="File" Value="C:\roundData\roundData Documentation\Library.data" Caption="Library.data" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Lessons">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="10">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357765743164.png" Caption="media_1357765743164.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357765818610.png" Caption="media_1357765818610.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357765980713.png" Caption="media_1357765980713.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766365268.png" Caption="media_1357766365268.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766439963.png" Caption="media_1357766439963.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766824380.png" Caption="media_1357766824380.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766864509.png" Caption="media_1357766864509.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357766953229.png" Caption="media_1357766953229.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357767271578.png" Caption="media_1357767271578.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Data\media_1357769687665.png" Caption="media_1357769687665.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357765743164.png" Caption="media_1357765743164.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357765818610.png" Caption="media_1357765818610.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357765980713.png" Caption="media_1357765980713.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766365268.png" Caption="media_1357766365268.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766439963.png" Caption="media_1357766439963.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766824380.png" Caption="media_1357766824380.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766864509.png" Caption="media_1357766864509.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357766953229.png" Caption="media_1357766953229.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357767271578.png" Caption="media_1357767271578.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\10\Media\media_1357769687665.png" Caption="media_1357769687665.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="11">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357767750535.png" Caption="media_1357767750535.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357768150775.png" Caption="media_1357768150775.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357768648925.png" Caption="media_1357768648925.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357769051325.png" Caption="media_1357769051325.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357769304473.png" Caption="media_1357769304473.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Data\media_1357769492291.png" Caption="media_1357769492291.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357767750535.png" Caption="media_1357767750535.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357768150775.png" Caption="media_1357768150775.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357768648925.png" Caption="media_1357768648925.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357769051325.png" Caption="media_1357769051325.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357769304473.png" Caption="media_1357769304473.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\11\Media\media_1357769492291.png" Caption="media_1357769492291.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="12" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="13">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Data\media_1357828004127.png" Caption="media_1357828004127.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Data\media_1357828073700.png" Caption="media_1357828073700.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Data\media_1357828122596.png" Caption="media_1357828122596.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Data\media_1357828830277.png" Caption="media_1357828830277.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Media\media_1357828004127.png" Caption="media_1357828004127.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Media\media_1357828073700.png" Caption="media_1357828073700.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Media\media_1357828122596.png" Caption="media_1357828122596.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\13\Media\media_1357828830277.png" Caption="media_1357828830277.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="15" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="17" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="18">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\18\Data\media_1357941457932.png" Caption="media_1357941457932.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\18\Data\media_1357941789229.png" Caption="media_1357941789229.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\18\Media\media_1357941457932.png" Caption="media_1357941457932.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\18\Media\media_1357941789229.png" Caption="media_1357941789229.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="19" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="2">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Data\media_1347048508123.png" Caption="media_1347048508123.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Data\media_1347048908775.png" Caption="media_1347048908775.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Data\media_1347049088965.png" Caption="media_1347049088965.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Data\media_1347049209132.png" Caption="media_1347049209132.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Media\media_1347048508123.png" Caption="media_1347048508123.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Media\media_1347048908775.png" Caption="media_1347048908775.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Media\media_1347049088965.png" Caption="media_1347049088965.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\2\Media\media_1347049209132.png" Caption="media_1347049209132.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="20">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828004127.png" Caption="media_1357828004127.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828073700.png" Caption="media_1357828073700.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828122596.png" Caption="media_1357828122596.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828244573.png" Caption="media_1357828244573.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828501411.png" Caption="media_1357828501411.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828590473.png" Caption="media_1357828590473.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Data\media_1357828674971.png" Caption="media_1357828674971.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828004127.png" Caption="media_1357828004127.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828073700.png" Caption="media_1357828073700.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828122596.png" Caption="media_1357828122596.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828244573.png" Caption="media_1357828244573.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828501411.png" Caption="media_1357828501411.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828590473.png" Caption="media_1357828590473.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\20\Media\media_1357828674971.png" Caption="media_1357828674971.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="22">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Data\media_1357829694434.png" Caption="media_1357829694434.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Data\media_1357829922510.png" Caption="media_1357829922510.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Data\media_1357830144772.png" Caption="media_1357830144772.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357829694434.png" Caption="media_1357829694434.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357829878235.png" Caption="media_1357829878235.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357829914625.png" Caption="media_1357829914625.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357829922510.png" Caption="media_1357829922510.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\22\Media\media_1357830144772.png" Caption="media_1357830144772.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="23">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Data\media_1357829694434.png" Caption="media_1357829694434.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Data\media_1357829922510.png" Caption="media_1357829922510.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Data\media_1357830690714.png" Caption="media_1357830690714.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Media\media_1357829694434.png" Caption="media_1357829694434.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Media\media_1357829922510.png" Caption="media_1357829922510.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\23\Media\media_1357830690714.png" Caption="media_1357830690714.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="25">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Data\media_1357750508993.png" Caption="media_1357750508993.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Data\media_1357750646210.png" Caption="media_1357750646210.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Data\media_1357750766873.png" Caption="media_1357750766873.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Data\media_1357833127815.png" Caption="media_1357833127815.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Media\media_1357750508993.png" Caption="media_1357750508993.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Media\media_1357750646210.png" Caption="media_1357750646210.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Media\media_1357750766873.png" Caption="media_1357750766873.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\25\Media\media_1357833127815.png" Caption="media_1357833127815.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="27">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\27\Data\media_1357913184328.png" Caption="media_1357913184328.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\27\Media\media_1357913184328.png" Caption="media_1357913184328.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="28">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358361947590.png" Caption="media_1358361947590.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358436565603.png" Caption="media_1358436565603.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358436768537.png" Caption="media_1358436768537.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358462119475.png" Caption="media_1358462119475.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358464112009.png" Caption="media_1358464112009.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Data\media_1358464420400.png" Caption="media_1358464420400.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358361947590.png" Caption="media_1358361947590.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358436565603.png" Caption="media_1358436565603.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358436768537.png" Caption="media_1358436768537.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358462119475.png" Caption="media_1358462119475.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358464112009.png" Caption="media_1358464112009.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\28\Media\media_1358464420400.png" Caption="media_1358464420400.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="29" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="3">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352319643737.png" Caption="media_1352319643737.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352320558694.png" Caption="media_1352320558694.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352320856813.png" Caption="media_1352320856813.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352320999284.png" Caption="media_1352320999284.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352322135262.png" Caption="media_1352322135262.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Data\media_1352322380060.png" Caption="media_1352322380060.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352319643737.png" Caption="media_1352319643737.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352320558694.png" Caption="media_1352320558694.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352320856813.png" Caption="media_1352320856813.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352320999284.png" Caption="media_1352320999284.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352322135262.png" Caption="media_1352322135262.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\3\Media\media_1352322380060.png" Caption="media_1352322380060.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="30">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Data\media_1357937698182.png" Caption="media_1357937698182.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Data\media_1357937879261.png" Caption="media_1357937879261.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Data\media_1357937968141.png" Caption="media_1357937968141.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Data\media_1357938306478.png" Caption="media_1357938306478.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Media\media_1357937698182.png" Caption="media_1357937698182.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Media\media_1357937879261.png" Caption="media_1357937879261.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Media\media_1357937968141.png" Caption="media_1357937968141.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\30\Media\media_1357938306478.png" Caption="media_1357938306478.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="31">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357914490650.png" Caption="media_1357914490650.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915186913.png" Caption="media_1357915186913.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915298258.png" Caption="media_1357915298258.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915364119.png" Caption="media_1357915364119.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915472756.png" Caption="media_1357915472756.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915618425.png" Caption="media_1357915618425.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Data\media_1357915648325.png" Caption="media_1357915648325.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357914490650.png" Caption="media_1357914490650.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915186913.png" Caption="media_1357915186913.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915298258.png" Caption="media_1357915298258.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915364119.png" Caption="media_1357915364119.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915472756.png" Caption="media_1357915472756.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915618425.png" Caption="media_1357915618425.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\31\Media\media_1357915648325.png" Caption="media_1357915648325.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="32">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\32\Data\media_1358185805751.png" Caption="media_1358185805751.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\32\Data\media_1358186311520.png" Caption="media_1358186311520.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\32\Media\media_1358185805751.png" Caption="media_1358185805751.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\32\Media\media_1358186311520.png" Caption="media_1358186311520.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="33" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="34" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="35" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="36" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="37" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="38" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="39" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="40" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="41" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="42" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="43" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="44" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="45">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Data\media_1358175327850.png" Caption="media_1358175327850.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Data\media_1358175517695.png" Caption="media_1358175517695.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Data\media_1358175657159.png" Caption="media_1358175657159.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Media\media_1358175327850.png" Caption="media_1358175327850.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Media\media_1358175517695.png" Caption="media_1358175517695.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\45\Media\media_1358175657159.png" Caption="media_1358175657159.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="46">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\46\Data\media_1358176907913.png" Caption="media_1358176907913.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\46\Data\media_1358176995817.png" Caption="media_1358176995817.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\46\Media\media_1358176907913.png" Caption="media_1358176907913.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\46\Media\media_1358176995817.png" Caption="media_1358176995817.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="47">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\47\Data\media_1358177098646.png" Caption="media_1358177098646.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\47\Data\media_1358177152836.png" Caption="media_1358177152836.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\47\Media\media_1358177098646.png" Caption="media_1358177098646.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\47\Media\media_1358177152836.png" Caption="media_1358177152836.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="48">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358187564915.png" Caption="media_1358187564915.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358191107541.png" Caption="media_1358191107541.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358191271906.png" Caption="media_1358191271906.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358191460191.png" Caption="media_1358191460191.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Data\media_1358198252026.png" Caption="media_1358198252026.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358187564915.png" Caption="media_1358187564915.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358191107541.png" Caption="media_1358191107541.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358191271906.png" Caption="media_1358191271906.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358191460191.png" Caption="media_1358191460191.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\48\Media\media_1358198252026.png" Caption="media_1358198252026.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="49">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358364211067.png" Caption="media_1358364211067.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358364436774.png" Caption="media_1358364436774.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358364782731.png" Caption="media_1358364782731.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358364914090.png" Caption="media_1358364914090.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358365001824.png" Caption="media_1358365001824.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358365045294.png" Caption="media_1358365045294.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Data\media_1358365460541.png" Caption="media_1358365460541.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358364211067.png" Caption="media_1358364211067.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358364436774.png" Caption="media_1358364436774.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358364782731.png" Caption="media_1358364782731.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358364914090.png" Caption="media_1358364914090.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358365001824.png" Caption="media_1358365001824.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358365045294.png" Caption="media_1358365045294.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\49\Media\media_1358365460541.png" Caption="media_1358365460541.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="50" />
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="51">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Data\media_1358367670794.png" Caption="media_1358367670794.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Data\media_1358367779643.png" Caption="media_1358367779643.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Data\media_1358368675110.png" Caption="media_1358368675110.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Media\media_1358367670794.png" Caption="media_1358367670794.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Media\media_1358367779643.png" Caption="media_1358367779643.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\51\Media\media_1358368675110.png" Caption="media_1358368675110.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="52">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="7">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358178733199.png" Caption="media_1358178733199.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358180712050.png" Caption="media_1358180712050.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358180798481.png" Caption="media_1358180798481.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358180851097.png" Caption="media_1358180851097.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358180960701.png" Caption="media_1358180960701.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181078110.png" Caption="media_1358181078110.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181448567.png" Caption="media_1358181448567.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181547528.png" Caption="media_1358181547528.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181652836.png" Caption="media_1358181652836.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181808741.png" Caption="media_1358181808741.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358181851574.png" Caption="media_1358181851574.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182101761.png" Caption="media_1358182101761.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182259968.png" Caption="media_1358182259968.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182308112.png" Caption="media_1358182308112.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182397603.png" Caption="media_1358182397603.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Data\media_1358182528725.png" Caption="media_1358182528725.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358178733199.png" Caption="media_1358178733199.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358180712050.png" Caption="media_1358180712050.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358180798481.png" Caption="media_1358180798481.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358180851097.png" Caption="media_1358180851097.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358180960701.png" Caption="media_1358180960701.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181078110.png" Caption="media_1358181078110.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181448567.png" Caption="media_1358181448567.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181547528.png" Caption="media_1358181547528.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181652836.png" Caption="media_1358181652836.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181808741.png" Caption="media_1358181808741.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358181851574.png" Caption="media_1358181851574.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182101761.png" Caption="media_1358182101761.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182259968.png" Caption="media_1358182259968.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182308112.png" Caption="media_1358182308112.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182397603.png" Caption="media_1358182397603.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\7\Media\media_1358182528725.png" Caption="media_1358182528725.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="8">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357750508993.png" Caption="media_1357750508993.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357750646210.png" Caption="media_1357750646210.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357750766873.png" Caption="media_1357750766873.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357751472519.png" Caption="media_1357751472519.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357751896415.png" Caption="media_1357751896415.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357752077840.png" Caption="media_1357752077840.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Data\media_1357752197746.png" Caption="media_1357752197746.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357750508993.png" Caption="media_1357750508993.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357750646210.png" Caption="media_1357750646210.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357750766873.png" Caption="media_1357750766873.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357751472519.png" Caption="media_1357751472519.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357751896415.png" Caption="media_1357751896415.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357752077840.png" Caption="media_1357752077840.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\8\Media\media_1357752197746.png" Caption="media_1357752197746.png" />
+            </Item>
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="9">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756078832.png" Caption="media_1357756078832.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756280067.png" Caption="media_1357756280067.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756399307.png" Caption="media_1357756399307.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756719677.png" Caption="media_1357756719677.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Data\media_1357756781298.png" Caption="media_1357756781298.png" />
+            </Item>
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756078832.png" Caption="media_1357756078832.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756280067.png" Caption="media_1357756280067.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756399307.png" Caption="media_1357756399307.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756719677.png" Caption="media_1357756719677.png" />
+              <Item Type="File" Value="C:\roundData\roundData Documentation\Lessons\9\Media\media_1357756781298.png" Caption="media_1357756781298.png" />
+            </Item>
+          </Item>
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="_Trash">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="Lessons">
+            <Item Type="FolderItem" FolderItemType="Standard" Caption="28">
+              <Item Type="FolderItem" FolderItemType="Standard" Caption="Data">
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Data\media_1358434640164.png" Caption="media_1358434640164.png" />
+              </Item>
+              <Item Type="FolderItem" FolderItemType="Standard" Caption="Media">
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Media\media_1358434640164.png" Caption="media_1358434640164.png" />
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Media\media_1358464329775.png" Caption="media_1358464329775.png" />
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Media\media_1358464390502.png" Caption="media_1358464390502.png" />
+                <Item Type="File" Value="C:\roundData\roundData Documentation\_Trash\Lessons\28\Media\media_1358464420460.png" Caption="media_1358464420460.png" />
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="roundSync Config">
+        <Item Type="File" Value="C:\roundData\roundSync Config\rj4salesforce.properties.sample" Caption="rj4salesforce.properties.sample" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Shared">
+        <Item Type="File" Value="C:\roundData\Shared\CorR_Function_get_table_name.sql" Caption="CorR_Function_get_table_name.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_index_if_not_exists.sql" Caption="create_index_if_not_exists.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_standard_views.sql" Caption="create_standard_views.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_standard_views_call.sql" Caption="create_standard_views_call.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\MASTER_LoginScript.vbs" Caption="MASTER_LoginScript.vbs" />
+        <Item Type="File" Value="C:\roundData\Shared\rC_LoginScript.VBS" Caption="rC_LoginScript.VBS" />
+        <Item Type="File" Value="C:\roundData\Shared\roundData Initial Build.tas" Caption="roundData Initial Build.tas" />
+        <Item Type="File" Value="C:\roundData\Shared\SYS_TRANSLATE.sql" Caption="SYS_TRANSLATE.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Bookmarks">
+          <Item Type="File" Value="C:\roundData\Shared\Bookmarks\rC.xml" Caption="rC.xml" />
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Universe Customizations">
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Account Contact View Customizations.iok" Caption="Account Contact View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Allocation View Customizations.iok" Caption="Giving - Allocation View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Credit View Customizations.iok" Caption="Giving - Credit View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Item View Customizations.iok" Caption="Giving - Item View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Summary Annual Current View Customizations.iok" Caption="Giving - Summary Annual Current View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Summary Annual Lifetime View Customizations.iok" Caption="Giving - Summary Annual Lifetime View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving.iok" Caption="Giving.iok" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="~Development">
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Connect">
+          <Item Type="File" Value="C:\roundData\~Development\rC_Connect\O_ACKNOWLEDGEMENT.sql" Caption="O_ACKNOWLEDGEMENT.sql" />
+          <Item Type="File" Value="C:\roundData\~Development\rC_Connect\o_tax_letter.sql" Caption="o_tax_letter.sql" />
+        </Item>
+      </Item>
+      <Item Type="File" Value="C:\roundData\roundData Initial Build.tas" Caption="roundData Initial Build.tas" />
+      <Item Type="File" Value="C:\roundData\roundData.tpf" Caption="roundData.tpf" />
+    </Item>
+    <Item Type="FolderItem" FolderItemType="ToDoList" Caption="ToDos">
+      <Item Type="ToDoList" Value="todo:///Add+data+dictionary+to+build" Completed="False" DueDate="1/1/0001" Caption="Add data dictionary to build"><![CDATA[]]></Item>
+      <Item Type="ToDoList" Value="todo:///Add+Stats+to+wiki" Completed="False" DueDate="1/1/0001" Caption="Add Stats to wiki"><![CDATA[]]></Item>
+      <Item Type="ToDoList" Value="todo:///Ack+View" Completed="False" DueDate="1/1/0001" Caption="Ack View"><![CDATA[]]></Item>
+      <Item Type="ToDoList" Value="todo:///Tax+Letter+View" Completed="False" DueDate="1/1/0001" Caption="Tax Letter View"><![CDATA[]]></Item>
+      <Item Type="ToDoList" Value="todo:///Nightly+rebuild" Completed="False" DueDate="1/1/0001" Caption="Nightly rebuild"><![CDATA[]]></Item>
+      <Item Type="ToDoList" Value="todo:///Build+Views+after+customization" Completed="False" DueDate="1/1/0001" Caption="Build Views after customization"><![CDATA[]]></Item>
+      <Item Type="FolderItem" FolderItemType="ToDoList" Caption="Documentation">
+        <Item Type="ToDoList" Value="todo:///Schedule+Documentation" Completed="False" DueDate="1/1/0001" Caption="Schedule Documentation"><![CDATA[]]></Item>
+        <Item Type="ToDoList" Value="todo:///Using+Documentation" Completed="True" DueDate="1/1/0001" Caption="Using Documentation"><![CDATA[]]></Item>
+        <Item Type="ToDoList" Value="todo:///Build+Documentation" Completed="True" DueDate="1/1/0001" Caption="Build Documentation"><![CDATA[]]></Item>
+      </Item>
+      <Item Type="ToDoList" Value="todo:///Add+rename_table_if_exist+to+build" Completed="False" DueDate="1/1/0001" Caption="Add rename_table_if_exist to build"><![CDATA[]]></Item>
+    </Item>
+    <Item Type="FolderItem" FolderItemType="Standard" Caption="Scheduled Tasks">
+      <Item Type="File" Value="C:\Windows\Tasks\roundSync Monitoring.job" Caption="roundSync Monitoring.job" />
+      <Item Type="File" Value="C:\Windows\Tasks\roundSync Monitoring 2.job" Caption="roundSync Monitoring 2.job" />
+      <Item Type="File" Value="C:\Windows\Tasks\roundSync Monitoring 3.job" Caption="roundSync Monitoring 3.job" />
+      <Item Type="File" Value="C:\Windows\Tasks\roundSync Monitoring 4.job" Caption="roundSync Monitoring 4.job" />
+      <Item Type="File" Value="C:\Windows\Tasks\roundSync Monitoring 5.job" Caption="roundSync Monitoring 5.job" />
+    </Item>
+  </Item>
+  <Item Type="Folder" Caption="roundData 1.22">
+    <Item Type="FolderItem" FolderItemType="Standard" Caption="roundData">
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Admin">
+        <Item Type="File" Value="C:\roundData\Admin\Data Dictonary.sql" Caption="Data Dictonary.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\get functions.sql" Caption="get functions.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\get views.sql" Caption="get views.sql" />
+        <Item Type="File" Value="C:\roundData\Admin\Manage roundData Dictonary.iok" Caption="Manage roundData Dictonary.iok" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Automation">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="Bios">
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Bios\automation_account_object.sql" Caption="automation_account_object.sql" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="Logs">
+            <Item Type="File" Value="C:\roundData\Admin\Automation\Logs\roundData Initial Build.log" Caption="roundData Initial Build.log" />
+          </Item>
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Monitoring">
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Errors.sql" Caption="CorR_view_rS_Errors.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Last_Synced.sql" Caption="CorR_view_rS_Last_Synced.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Last_Synced_Review.sql" Caption="CorR_view_rS_Last_Synced_Review.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Run_History_by_Day.sql" Caption="CorR_view_rS_Run_History_by_Day.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\CorR_view_rS_Run_History_by_Month.sql" Caption="CorR_view_rS_Run_History_by_Month.sql" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundCorner.png" Caption="roundCorner.png" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Errors.tdr" Caption="roundSync Errors.tdr" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Monitoring.iok" Caption="roundSync Monitoring.iok" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Monitoring.tas" Caption="roundSync Monitoring.tas" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Reports.pdf" Caption="roundSync Reports.pdf" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Status.tdr" Caption="roundSync Status.tdr" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Monitoring - Errors.xml" Caption="roundSync Monitoring - Errors.xml" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Monitoring.xml" Caption="roundSync Monitoring.xml" />
+          <Item Type="File" Value="C:\roundData\Admin\Monitoring\roundSync Monitoring - Errors.tas" Caption="roundSync Monitoring - Errors.tas" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Users">
+          <Item Type="File" Value="C:\roundData\Admin\Users\create user.sql" Caption="create user.sql" />
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Bios">
+        <Item Type="File" Value="C:\roundData\rC_Bios\Build_Account_Contact.sql" Caption="Build_Account_Contact.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\CREATE_UNIVERSE_ACCOUNT_CONTACT.sql" Caption="CREATE_UNIVERSE_ACCOUNT_CONTACT.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" Caption="Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rC_Bios ERD.ter" Caption="rC_Bios ERD.ter" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\rc_bios_indexes.sql" Caption="rc_bios_indexes.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\Rename_Account_Contact.sql" Caption="Rename_Account_Contact.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Bios\SMARTVIEWS.sql" Caption="SMARTVIEWS.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="FUNCTIONS">
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\CONTACT_PRIMARY_GUID.sql" Caption="CONTACT_PRIMARY_GUID.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\CONTACT_SECONDARY_GUID.sql" Caption="CONTACT_SECONDARY_GUID.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_CATEGORY.sql" Caption="PREFERENCE_CATEGORY.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_TYPE.sql" Caption="PREFERENCE_TYPE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_ACCOUNT.sql" Caption="SALUTATION_INSIDE_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_CONTACT.sql" Caption="SALUTATION_INSIDE_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_ACCOUNT.sql" Caption="SALUTATION_LINE_1_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_CONTACT.sql" Caption="SALUTATION_LINE_1_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_ACCOUNT.sql" Caption="SALUTATION_LINE_2_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_CONTACT.sql" Caption="SALUTATION_LINE_2_CONTACT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_ACCOUNT.sql" Caption="SALUTATION_LINE_3_ACCOUNT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_CONTACT.sql" Caption="SALUTATION_LINE_3_CONTACT.sql" />
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Connect">
+        <Item Type="File" Value="C:\roundData\rC_Connect\o_premimum_fulfillment.sql" Caption="o_premimum_fulfillment.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Connect\o_solicitation.sql" Caption="o_solicitation.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Connect\rC_Connect_Indexes.sql" Caption="rC_Connect_Indexes.sql" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving">
+        <Item Type="File" Value="C:\roundData\rC_Giving\Build_GIVING.sql" Caption="Build_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Build_RD_UNIDEF_Giving.sql" Caption="Build_RD_UNIDEF_Giving.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\CREATE_UNIVERSE_GIVING.sql" Caption="CREATE_UNIVERSE_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Populate_RD_UNIDEF_GIVING.sql" Caption="Populate_RD_UNIDEF_GIVING.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving ERD.ter" Caption="rC_Giving ERD.ter" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\rC_GIVING_INDEXES.sql" Caption="rC_GIVING_INDEXES.sql" />
+        <Item Type="File" Value="C:\roundData\rC_Giving\Rename_RD_UNIDEF_GIVING.sql" Caption="Rename_RD_UNIDEF_GIVING.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="FUNCTIONS">
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_LAST_PAYMENT_DATE.sql" Caption="GIVING_LAST_PAYMENT_DATE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_BALANCE.sql" Caption="GIVING_PLEDGE_BALANCE.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_PAST_DUE_BALANCE.sql" Caption="GIVING_PLEDGE_PAST_DUE_BALANCE.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Allocation">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Build_GIVING_ALLOCATION.sql" Caption="Build_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Build_RD_UNIDEF_Giving_ALLOCATION.sql" Caption="Build_RD_UNIDEF_Giving_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\CREATE_UNIVERSE_GIVING_ALLOCATION.sql" Caption="CREATE_UNIVERSE_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\Populate_RD_UNIDEF_GIVING_ALLOCATION.sql" Caption="Populate_RD_UNIDEF_GIVING_ALLOCATION.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\rC_Giving_Allocation ERD.ter" Caption="rC_Giving_Allocation ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Allocation\rename_giving_allocation.sql" Caption="rename_giving_allocation.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Credit">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Build_GIVING_CREDIT.sql" Caption="Build_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Build_RD_UNIDEF_Giving_Credit.sql" Caption="Build_RD_UNIDEF_Giving_Credit.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\CREATE_UNIVERSE_GIVING_CREDIT.sql" Caption="CREATE_UNIVERSE_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\Populate_RD_UNIDEF_GIVING_CREDIT.sql" Caption="Populate_RD_UNIDEF_GIVING_CREDIT.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\rC_Giving_Credit ERD.ter" Caption="rC_Giving_Credit ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Credit\rename_giving_credit.sql" Caption="rename_giving_credit.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Item">
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Build_GIVING_ITEM.sql" Caption="Build_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Build_RD_UNIDEF_Giving_ITEM.sql" Caption="Build_RD_UNIDEF_Giving_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\CREATE_UNIVERSE_GIVING_ITEM.sql" Caption="CREATE_UNIVERSE_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\Populate_RD_UNIDEF_GIVING_ITEM.sql" Caption="Populate_RD_UNIDEF_GIVING_ITEM.sql" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\rC_Giving_Item ERD.ter" Caption="rC_Giving_Item ERD.ter" />
+          <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Item\rename_giving_item.sql" Caption="rename_giving_item.sql" />
+        </Item>
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary">
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary_Annual_Current">
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql" Caption="Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\rename_GIVING_SUMMARY_ANNUAL_CURRENT.sql" Caption="rename_GIVING_SUMMARY_ANNUAL_CURRENT.sql" />
+          </Item>
+          <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Giving_Summary_Annual_Lifetime">
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" Caption="Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql" />
+            <Item Type="File" Value="C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\rename_giving_summary_annual_lifetime.sql" Caption="rename_giving_summary_annual_lifetime.sql" />
+          </Item>
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="roundSync Config">
+        <Item Type="File" Value="C:\roundData\roundSync Config\rj4salesforce.properties.sample" Caption="rj4salesforce.properties.sample" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Shared">
+        <Item Type="File" Value="C:\roundData\Shared\CorR_Function_get_table_name.sql" Caption="CorR_Function_get_table_name.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_index_if_not_exists.sql" Caption="create_index_if_not_exists.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_standard_views.sql" Caption="create_standard_views.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\create_standard_views_call.sql" Caption="create_standard_views_call.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\get_object_name.sql" Caption="get_object_name.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\get_table_name.sql" Caption="get_table_name.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\MASTER_LoginScript.vbs" Caption="MASTER_LoginScript.vbs" />
+        <Item Type="File" Value="C:\roundData\Shared\rC_LoginScript.VBS" Caption="rC_LoginScript.VBS" />
+        <Item Type="File" Value="C:\roundData\Shared\rename_invalid_field_names.sql" Caption="rename_invalid_field_names.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\rename_table_if_exists.sql" Caption="rename_table_if_exists.sql" />
+        <Item Type="File" Value="C:\roundData\Shared\roundData Initial Build.tas" Caption="roundData Initial Build.tas" />
+        <Item Type="File" Value="C:\roundData\Shared\roundData Universe Build.tas" Caption="roundData Universe Build.tas" />
+        <Item Type="File" Value="C:\roundData\Shared\roundData.tpf" Caption="roundData.tpf" />
+        <Item Type="File" Value="C:\roundData\Shared\SYS_TRANSLATE.sql" Caption="SYS_TRANSLATE.sql" />
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="Bookmarks">
+          <Item Type="File" Value="C:\roundData\Shared\Bookmarks\rC.xml" Caption="rC.xml" />
+        </Item>
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="Universe Customizations">
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Account Contact View Customizations.iok" Caption="Account Contact View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Allocation View Customizations.iok" Caption="Giving - Allocation View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Credit View Customizations.iok" Caption="Giving - Credit View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Item View Customizations.iok" Caption="Giving - Item View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Summary Annual Current View Customizations.iok" Caption="Giving - Summary Annual Current View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving - Summary Annual Lifetime View Customizations.iok" Caption="Giving - Summary Annual Lifetime View Customizations.iok" />
+        <Item Type="File" Value="C:\roundData\Universe Customizations\Giving.iok" Caption="Giving.iok" />
+      </Item>
+      <Item Type="FolderItem" FolderItemType="Standard" Caption="~Development">
+        <Item Type="FolderItem" FolderItemType="Standard" Caption="rC_Connect">
+          <Item Type="File" Value="C:\roundData\~Development\rC_Connect\O_ACKNOWLEDGEMENT.sql" Caption="O_ACKNOWLEDGEMENT.sql" />
+          <Item Type="File" Value="C:\roundData\~Development\rC_Connect\o_tax_letter.sql" Caption="o_tax_letter.sql" />
+        </Item>
+      </Item>
+    </Item>
+    <Item Type="FolderItem" FolderItemType="Standard" Caption="Scheduled Tasks">
+      <Item Type="File" Value="C:\Windows\Tasks\roundSync Monitoring 6.job" Caption="roundSync Monitoring 6.job" />
+    </Item>
+  </Item>
+</ProjectManager>

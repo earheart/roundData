@@ -1,0 +1,1 @@
+select lower(table_name) tablename from rj_object where object_name = 'account';

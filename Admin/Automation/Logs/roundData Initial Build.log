@@ -1,0 +1,2363 @@
+-- 4/15/2013 1:09:24 PM: roundData Initial Build.log: Setting up environment
+-- 4/15/2013 1:09:24 PM: roundData Initial Build.log: Script run by Toad for MySQL 6.3.0.642
+-- 4/15/2013 1:09:24 PM: roundData Initial Build.log: Build started
+-- 4/15/2013 1:09:24 PM: roundData Initial Build.log: Compiling Script
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Build Completed
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Begin execution script activities
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\SYS_TRANSLATE.sql
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SYS_TRANSLATE
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `SYS_TRANSLATE`(in_value varchar(4000)
+                      ,in_find varchar(4000)
+                      ,in_replace varchar(4000)) RETURNS varchar(4000) CHARSET latin1
+BEGIN
+
+   DECLARE loop_cntr INT DEFAULT 1;
+ 
+   WHILE loop_cntr <= LENGTH(in_find) DO
+   
+  
+  SET in_value = REPLACE(in_value, SUBSTRING(in_find , loop_cntr, 1), SUBSTRING(in_replace, loop_cntr, 1));
+  SET loop_cntr = loop_cntr + 1;
+ 
+ END WHILE;
+ RETURN in_value;
+END
+-- 4/15/2013 1:09:27 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\get_column_name.sql
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GET_COLUMN_NAME
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `GET_COLUMN_NAME`(FIELD_NAME_IN VARCHAR(255), TABLE_NAME_IN VARCHAR(255)) RETURNS VARCHAR(255) CHARSET LATIN1
+BEGIN
+     DECLARE COLUMN_NAME_OUT VARCHAR(255);
+     SET COLUMN_NAME_OUT = 
+       (SELECT COLUMN_NAME FROM RJ_FIELD WHERE FIELD_NAME = FIELD_NAME_IN AND TABLE_NAME = TABLE_NAME_IN); 
+	RETURN COLUMN_NAME_OUT;
+END
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\RENAME_TABLE_IF_EXISTS.sql
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS RENAME_TABLE_IF_EXISTS
+-- 4/15/2013 1:09:28 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE RENAME_TABLE_IF_EXISTS(IN PARAM_TABLE VARCHAR(255))
+BEGIN
+        set @schema := (select schema());
+        set @hist_table := (select concat(param_table,'_', replace(curdate(), '-','_'),'_at_', replace(curtime(), ':','_')));
+        set @unidef := (select COUNT(*)
+        FROM INFORMATION_SCHEMA.tables
+        WHERE table_schema = @schema
+        AND table_name = param_table);
+    IF @unidef <> 0 THEN
+        SET @sql_cmd := CONCAT(
+            'rename TABLE ',
+            '`', @schema, '`', '.',
+            param_table,
+            ' TO ',             
+            '`', @schema, '`', '.',
+            @hist_table);
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        SET @sql_cmd := concat('Create table ', param_table, ' as select * from ', @hist_table);
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+     ELSE
+        -- SET @SQL_CMD := (SELECT concat('CREATE TABLE ', PARAM_TABLE, ' (RECORD_NUMBER INT(11) not null AUTO_INCREMENT, TABLE_NAME VARCHAR(30) NOT NULL, FIELD_NAME VARCHAR(60) NOT NULL, COLUMN_NAME VARCHAR(30) NOT NULL, LABEL VARCHAR(70) NOT NULL, HELPTEXT LONGTEXT ASCII, UNIVERSE_NAME VARCHAR(100) NOT NULL, UNIVERSE_FIELD_NAME VARCHAR(100) NOT NULL, UNIVERSE_FIELD_NAME_OVERRIDE VARCHAR(100), INCLUDED VARCHAR(5) DEFAULT \'False\', ORDERBY INT(11), PRIMARY KEY (RECORD_NUMBER)) ENGINE = innodb ROW_FORMAT = DEFAULT'));
+        SET @SQL_CMD := (SELECT concat('CREATE TABLE ', PARAM_TABLE, ' as SELECT * FROM RC_ADMIN.', PARAM_TABLE));
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+       IF PARAM_TABLE <> 'RD_ARCHIVE_API' THEN
+        SET @SQL_CMD := (select concat('update ', PARAM_TABLE, ' u join rj_field f on u.field_name = f.FIELD_NAME and u.column_name = f.COLUMN_NAME set u.column_name = f.column_name where f.column_name <> u.column_name'));
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+        ELSE SET @SQL_CMD := (select concat('update ', PARAM_TABLE, ' u join rj_field f on u.field_name = f.FIELD_NAME and u.column_name = f.COLUMN_NAME set u.column_name = f.column_name where f.column_name <> u.column_name'));
+        END IF;
+    END IF;
+END
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\GET_OBJECT_NAME.sql
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GET_OBJECT_NAME
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Executed: CREATE FUNCTION GET_OBJECT_NAME(TABLE_NAME_IN VARCHAR(255)) RETURNS VARCHAR(255) CHARSET LATIN1
+BEGIN
+     DECLARE OBJECT_NAME_OUT VARCHAR(255);
+     SET OBJECT_NAME_OUT = 
+       (SELECT OBJECT_NAME FROM RJ_OBJECT WHERE TABLE_NAME = TABLE_NAME_IN); 
+	RETURN OBJECT_NAME_OUT;
+END
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:29 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\rename_invalid_field_names.sql
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS RENAME_INVALID_FIELD_NAMES
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE `RENAME_INVALID_FIELD_NAMES`(IN PARAM_TABLE VARCHAR(255))
+BEGIN
+        -- replaces % with PCT
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = REPLACE(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME),\'%\', \'pct\') where included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces (s) with nothing
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = REPLACE(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME),\'(s)\', \'\') where included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces + with plus
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = REPLACE(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME),\'+\', \'plus\') where included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces @ with _at_
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = REPLACE(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME),\'@\', \'_at_\') where included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces * with _x_
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = REPLACE(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME),\'*\', \'_x_\') where included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces & with and
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = REPLACE(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME),\'&\', \'and\') where included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces # with num
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = REPLACE(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME),\'#\', \'num\') where included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces " with nothing
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' set UNIVERSE_FIELD_NAME_OVERRIDE = replace(UNIVERSE_FIELD_NAME_OVERRIDE, \'\"\',\'\') where IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME) like \'%\"%\' and included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces \ with nothing
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' set UNIVERSE_FIELD_NAME_OVERRIDE = replace(UNIVERSE_FIELD_NAME_OVERRIDE, \'\\\'\',\'\') where IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME) like \'%\\\'%\' and included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces__ with _
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = REPLACE(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME),\'__\', \'_\') where included = \'True\' and included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- looks for identical labels and pre-appends the object name where they are found
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, '  g join (SELECT IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE,UNIVERSE_FIELD_NAME) naming FROM ', param_table, ' where included = \'True\' GROUP BY IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE,UNIVERSE_FIELD_NAME) HAVING COUNT(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE,UNIVERSE_FIELD_NAME))>1) n on n.naming = IFNULL(g.UNIVERSE_FIELD_NAME_OVERRIDE,g.UNIVERSE_FIELD_NAME) set UNIVERSE_FIELD_NAME_OVERRIDE = concat(get_object_name(table_name), \'_\', ifnull(g.UNIVERSE_FIELD_NAME_OVERRIDE, g.UNIVERSE_FIELD_NAME))');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        --  looks for remaining identical labels and used the column name (api name)
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, '  g join (SELECT IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE,UNIVERSE_FIELD_NAME) naming FROM ', param_table, ' where included = \'True\' GROUP BY IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE,UNIVERSE_FIELD_NAME) HAVING COUNT(IFNULL(UNIVERSE_FIELD_NAME_OVERRIDE,UNIVERSE_FIELD_NAME))>1) n on n.naming = IFNULL(g.UNIVERSE_FIELD_NAME_OVERRIDE,g.UNIVERSE_FIELD_NAME) set UNIVERSE_FIELD_NAME_OVERRIDE = G.COLUMN_NAME');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        -- replaces the final character of names ending in _ with nothing
+        SET @sql_cmd := CONCAT('UPDATE ', param_table, ' SET UNIVERSE_FIELD_NAME_OVERRIDE = left(UNIVERSE_FIELD_NAME_OVERRIDE,(length(UNIVERSE_FIELD_NAME_OVERRIDE)-1)) where right((UNIVERSE_FIELD_NAME_OVERRIDE),1) = \'_\' and included = \'True\'');
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;        
+        DEALLOCATE PREPARE stmt;
+END
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\\CREATE_INDEX_IF_NOT_EXISTS.sql
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_INDEX_IF_NOT_EXISTS
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_INDEX_IF_NOT_EXISTS(IN PARAM_TABLE CHAR(255), IN PARAM_INDEX CHAR(255), IN PARAM_COLUMN CHAR(255))
+BEGIN
+
+        -- SELECT 
+        set @schema := (select schema());
+        set @indexes := (select COUNT(*)
+        FROM INFORMATION_SCHEMA.STATISTICS
+        WHERE table_schema = @schema
+        AND table_name = param_table
+        AND INDEX_NAME = param_index);
+
+    IF @indexes = 0 THEN
+        SET @sql_cmd := CONCAT(
+            'ALTER TABLE ',
+            param_table,
+            ' ADD INDEX ',
+            '`', param_index, '` ',
+            '(', param_column, ')');
+        -- SELECT @sql_cmd;
+        PREPARE stmt FROM @sql_cmd;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+    END IF;
+END
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:30 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\GET_FIELD_LIST.sql
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GET_FIELD_LIST
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `GET_FIELD_LIST`(RANGE_IN INTEGER, TABLE_IN VARCHAR(255)) RETURNS varchar(25000) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE RESULT VARCHAR(25000);
+     DECLARE LOWER_BOUND INTEGER(18);
+     DECLARE UPPER_BOUND INTEGER(18);
+     SET LOWER_BOUND = CASE WHEN RANGE_IN = 1 THEN 0  WHEN RANGE_IN = 2 THEN 50  WHEN RANGE_IN = 3 THEN 100 WHEN RANGE_IN = 4 THEN 150 WHEN RANGE_IN = 5 THEN 200 WHEN RANGE_IN = 6 THEN 250 WHEN RANGE_IN = 7 THEN 300 WHEN RANGE_IN = 8 THEN 350 WHEN RANGE_IN = 9 THEN 400 WHEN RANGE_IN = 10 THEN 450 ELSE 500  END;
+     SET UPPER_BOUND = CASE WHEN RANGE_IN = 1 THEN 50 WHEN RANGE_IN = 2 THEN 100 WHEN RANGE_IN = 3 THEN 150 WHEN RANGE_IN = 4 THEN 200 WHEN RANGE_IN = 5 THEN 250 WHEN RANGE_IN = 6 THEN 300 WHEN RANGE_IN = 7 THEN 350 WHEN RANGE_IN = 8 THEN 400 WHEN RANGE_IN = 9 THEN 450 WHEN RANGE_IN = 10 THEN 500 ELSE 1000 END;
+     SET RESULT =
+    (
+      SELECT (group_concat(field_list)) field_list
+      FROM
+      (
+      SELECT @rownum:=@rownum+1 AS rank, (concat(COLUMN_NAME, ' as ', case when right(column_name,1) = 'x' then concat(upper(mid(column_name,1,1)) ,left(lower(mid(column_name,2,length(column_name) -1)), length(lower(mid(column_name,2,length(column_name) -2)))), upper(right(column_name,1))) when right(field_name,3) = '__c' then left(field_name, length(field_name) - length(right(field_name,3))) else field_name end, ' ')) FIELD_LIST
+      FROM rj_field, (SELECT @rownum:=0) r
+      WHERE TABLE_NAME = TABLE_IN
+      and field_name <> 'ID__C'
+      ) sel
+      WHERE rank >= LOWER_BOUND
+      AND rank < UPPER_BOUND
+      AND FIELD_LIST IS NOT NULL
+      );
+     RETURN RESULT;
+    END
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\GET_FIELD_LABEL.sql
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GET_FIELD_LABEL
+-- 4/15/2013 1:09:31 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `GET_FIELD_LABEL`(FIELD_NAME_IN VARCHAR(255), TABLE_NAME_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+BEGIN
+     DECLARE FIELD_LABEL_OUT VARCHAR(255);
+     SET FIELD_LABEL_OUT = 
+       (SELECT CONCAT('`', LABEL, '`') FROM RJ_FIELD WHERE TABLE_NAME = TABLE_NAME_IN AND FIELD_NAME = FIELD_NAME_IN); 
+	RETURN FIELD_LABEL_OUT;
+END
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\GET_TABLE_NAME.sql
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GET_TABLE_NAME
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `GET_TABLE_NAME`(OBJECT_NAME_IN VARCHAR(255)) RETURNS VARCHAR(255) CHARSET LATIN1
+BEGIN
+     DECLARE TABLE_NAME_OUT VARCHAR(255);
+     SET TABLE_NAME_OUT = 
+       (SELECT TABLE_NAME FROM RJ_OBJECT WHERE OBJECT_NAME = OBJECT_NAME_IN); 
+	RETURN TABLE_NAME_OUT;
+END
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:32 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\GET_API_FIELD_LIST.sql
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GET_API_FIELD_LIST
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executed: CREATE FUNCTION GET_API_FIELD_LIST(OBJECT_NAME_IN VARCHAR(255)) RETURNS VARCHAR(5000) CHARSET LATIN1
+BEGIN
+     DECLARE FIELD_LABEL_OUT VARCHAR(5000);
+     SET FIELD_LABEL_OUT = 
+       (SELECT 
+          GROUP_CONCAT(CONCAT(GET_VIEW_COLUMN(FIELD_NAME, OBJECT_NAME), ' AS ', (REPLACE(LABEL,'?',''))))
+           FROM RC_ADMIN.RD_ARCHIVE_API A
+          WHERE OBJECT_NAME = OBJECT_NAME_IN); 
+	RETURN FIELD_LABEL_OUT;
+END
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\GET_STANDARD_VIEW_DEF.sql
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS GET_STANDARD_VIEW_DEF
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE `GET_STANDARD_VIEW_DEF`(TABLE_NAME_IN VARCHAR(255), OBJECT_NAME_IN VARCHAR(255), ARCHIVE_FIELD_IN VARCHAR(255))
+BEGIN 
+
+SET @1 =  (select                                                                                    GET_FIELD_LIST(1,  TABLE_NAME_IN));
+SET @2 =  (select concat(case when length(GET_FIELD_LIST(2,  TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(2,  TABLE_NAME_IN)));
+SET @3 =  (select concat(case when length(GET_FIELD_LIST(3,  TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(3,  TABLE_NAME_IN)));
+SET @4 =  (select concat(case when length(GET_FIELD_LIST(4,  TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(4,  TABLE_NAME_IN)));
+SET @5 =  (select concat(case when length(GET_FIELD_LIST(5,  TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(5,  TABLE_NAME_IN)));
+SET @6 =  (select concat(case when length(GET_FIELD_LIST(6,  TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(6,  TABLE_NAME_IN)));
+SET @7 =  (select concat(case when length(GET_FIELD_LIST(7,  TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(7,  TABLE_NAME_IN)));
+SET @8 =  (select concat(case when length(GET_FIELD_LIST(8,  TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(8,  TABLE_NAME_IN)));
+SET @9 =  (select concat(case when length(GET_FIELD_LIST(9,  TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(9,  TABLE_NAME_IN)));
+SET @10 = (select concat(case when length(GET_FIELD_LIST(10, TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(10, TABLE_NAME_IN)));
+SET @11 = (select concat(case when length(GET_FIELD_LIST(11, TABLE_NAME_IN))>1 then ',' else '' end, GET_FIELD_LIST(11, TABLE_NAME_IN)));
+
+SET @SELECT    = CONCAT('create or replace view V_', OBJECT_NAME_IN, ' as select ');
+SET @FROM      = CONCAT(' from ', TABLE_NAME_IN, ' where delete_flag <> \'Y\'');
+SET @ARCHIVE   = CASE WHEN ARCHIVE_FIELD_IN = 'NONE' THEN '' ELSE CONCAT(' or (delete_flag = \'Y\' and ', ARCHIVE_FIELD_IN, ' = \'True\');') END;
+
+SET @DEF = (SELECT CONCAT(@SELECT,
+                                            case when length(@1)  > 0 then 
+                          @1  else '*' end, case when length(@2)  > 0 then 
+                          @2  else ''  end, case when length(@3)  > 0 then 
+                          @3  else ''  end, case when length(@4)  > 0 then 
+                          @4  else ''  end, case when length(@5)  > 0 then 
+                          @5  else ''  end, case when length(@6)  > 0 then 
+                          @6  else ''  end, case when length(@7)  > 0 then 
+                          @7  else ''  end, case when length(@8)  > 0 then 
+                          @8  else ''  end, case when length(@9)  > 0 then 
+                          @9  else ''  end, case when length(@10) > 0 then 
+                          @10 else ''  end, case when length(@11) > 0 then 
+                          @11 else ''  end,
+                          @FROM, 
+                          @ARCHIVE) AS DEF);
+                          
+
+PREPARE DEF_STMT FROM @DEF;
+ 
+EXECUTE DEF_STMT;
+ 
+DEALLOCATE PREPARE DEF_STMT;
+
+END
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:33 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\GET_VIEW_COLUMN.sql
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GET_VIEW_COLUMN
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `GET_VIEW_COLUMN`(FIELD_NAME_IN VARCHAR(255), OBJECT_NAME_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+BEGIN
+     DECLARE COLUMN_NAME_OUT VARCHAR(255);
+     SET COLUMN_NAME_OUT = 
+       (SELECT  case when right(column_name,1) = 'x' then concat(upper(mid(column_name,1,1)) ,left(lower(mid(column_name,2,length(column_name) -1)), length(lower(mid(column_name,2,length(column_name) -2)))), upper(right(column_name,1))) when right(field_name,3) = '__c' then left(field_name, length(field_name) - length(right(field_name,3))) else field_name end 
+       FROM RJ_FIELD
+       JOIN RJ_OBJECT ON rj_field.TABLE_NAME = rj_object.TABLE_NAME
+       WHERE OBJECT_NAME = OBJECT_NAME_IN 
+       AND FIELD_NAME = FIELD_NAME_IN); 
+	RETURN COLUMN_NAME_OUT;
+END
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\\create_standard_views.sql
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_STANDARD_VIEWS
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_STANDARD_VIEWS()
+BEGIN
+DROP TABLE IF EXISTS RS_CREATE_VIEW;
+CREATE TABLE RS_CREATE_VIEW
+as
+        select @rownum:=@rownum+1 as rownum, main.*
+        from
+        (SELECT O.TABLE_NAME, O.OBJECT_NAME, F.COLUMN_NAME AS ARCHIVE_FIELD
+        from rj_object o 
+        join rj_field f on f.TABLE_NAME = o.TABLE_NAME
+        where f.FIELD_NAME like '%archive_flag%'
+        group by o.OBJECT_NAME
+        union
+        select o.TABLE_NAME, o.object_name, 'NONE'
+        from rj_object o 
+        join rj_field f on f.TABLE_NAME = o.TABLE_NAME
+        where o.OBJECT_NAME not in 
+        (select o.OBJECT_NAME
+        from rj_object o 
+        join rj_field f on f.TABLE_NAME = o.TABLE_NAME
+        where f.FIELD_NAME like '%archive_flag%'
+        group by o.OBJECT_NAME)
+        group by o.OBJECT_NAME) main
+        , (SELECT @rownum:=0) r;
+SET @c1 = (select max(rownum) from rs_create_view);
+SET @p1 = 0;
+set @r1 = '';
+set @table_name = '';
+set @object_name = '';
+set @archive_field = '';
+REPEAT
+    SET @p1 = @p1 + 1;
+    set @table_name    = (select table_name    from RS_CREATE_VIEW where rownum = @p1);
+    set @object_name   = (select case when right(OBJECT_name,3) = '__c' then left(OBJECT_name, length(OBJECT_name) - length(right(OBJECT_name,3))) else OBJECT_name end AS OBJECT_NAME  from RS_CREATE_VIEW where rownum = @p1);
+    set @archive_field = (select archive_field from RS_CREATE_VIEW where rownum = @p1);
+    SET @r1            = concat('call GET_STANDARD_VIEW_DEF(\'', @table_name, '\',\'',  @object_name, '\',\'', @archive_field, '\');');
+    SET @execute_def   = @r1;     
+    PREPARE execute_def_stmt from @execute_def;
+    EXECUTE execute_def_stmt;
+    DEALLOCATE PREPARE execute_def_stmt;
+UNTIL @p1 = @c1
+END REPEAT;
+drop table RS_CREATE_VIEW;
+END
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:34 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\rc_bios_indexes.sql
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('account'), 'ix_account_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('account'), 'ix_account_external_id', 'RC_BIOS__external_id (18)')
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('contact'), 'ix_contact_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('contact'), 'ix_contact_pref_contact', 'RC_BIOS__preferred_contact')
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('contact'), 'ix_contact_active_contact', 'RC_BIOS__active')
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_bios__address__c'), 'ix_address_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:35 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_bios__preference__c'), 'ix_preference_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_bios__preference__c'), 'ix_preference_category','rc_bios__category, rc_bios__subcategory')
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_bios__preference__c'), 'ix_preference_type','rc_bios__type, rc_bios__subtype')
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_bios__relationship__c'), 'ix_relationship_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_bios__salutation__c'), 'ix_salutation_del_archive_flags', 'DELETE_FLAG, RC_BIOS__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\GET_ARCHIVE_VIEW_DEF.sql
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS GET_ARCHIVE_VIEW_DEF
+-- 4/15/2013 1:09:36 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE `GET_ARCHIVE_VIEW_DEF`(OBJECT_NAME_IN VARCHAR(255))
+BEGIN 
+
+SET @TABLE_NAME = GET_TABLE_NAME(OBJECT_NAME_IN);
+SET @SELECT    = CONCAT('create or replace view API_', OBJECT_NAME_IN, ' as select ');
+SET @FIELD_LIST = GET_API_FIELD_LIST(OBJECT_NAME_IN);
+SET @FROM      = CONCAT(' from V_', REPLACE(OBJECT_NAME_IN, '__C',''));
+
+SET @DEF = (SELECT CONCAT(@SELECT,
+                          @FIELD_LIST,               
+                          @FROM) AS DEF);
+                          
+-- select @def;
+-- select @table_name;
+-- select @select;
+-- select @field_list;
+-- select @from;
+
+PREPARE DEF_STMT FROM @DEF;
+ 
+EXECUTE DEF_STMT;
+
+DEALLOCATE PREPARE DEF_STMT;
+
+END
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_GIVING_INDEXES.sql
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_del_archive_flags', 'DELETE_FLAG, RC_GIVING__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_closedate', 'closedate')
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_closedatetime', 'rc_giving__close_date_time')
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_amount', 'amount')
+-- 4/15/2013 1:09:37 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_rc_giving_amount', 'rc_giving__giving_amount')
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_rc_giving_current_amount', 'rc_giving__current_giving_amou')
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_fiscalyear', 'fiscalyear')
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_recordtype', 'recordtypeid')
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunity'), 'ix_opportunity_parent', 'rc_giving__parent')
+-- 4/15/2013 1:09:38 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_del_archive_flags', 'DELETE_FLAG, RC_GIVING__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_gau', 'RC_GIVING__gau')
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_source_code', 'RC_GIVING__source_code')
+-- 4/15/2013 1:09:39 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_source_code_partial', 'RC_GIVING__source_code_partial')
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_affiliation', 'RC_GIVING__affiliation')
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_channel', 'RC_GIVING__channel')
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_campaign_type', 'RC_GIVING__campaign_type')
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_appeal_segment', 'RC_GIVING__appeal_segment')
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_effort', 'RC_GIVING__effort')
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_solicitation_type', 'RC_GIVING__solicitation_type')
+-- 4/15/2013 1:09:40 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_support_designation', 'RC_GIVING__support_designation')
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('campaign'), 'ix_campaign_segment', 'RC_GIVING__segment')
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__gau__c'), 'ix_rc_giv_gau_del_archive_flags', 'DELETE_FLAG, RC_GIVING__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__gau__c'), 'ix_rc_giving__gau_parent', 'rc_giving__parent')
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__opportunity_allocation__c'), 'ix_rc_giv_allocation_del_archive_flags', 'DELETE_FLAG, RC_GIVING__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__opportunity_credit__c'), 'ix_rc_giv_credit_del_archive_flags', 'DELETE_FLAG, RC_GIVING__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__opportunity_credit__c'), 'ix_rc_giv_credit_amount', 'rc_giving__amount')
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__opportunity_credit__c'), 'ix_rc_giv_credit_opp_close_date', get_column_name('RC_GIVING__OPPORTUNITY_CLOSE_Date__c', 'RC_GIVING__SUMMARY'))
+-- 4/15/2013 1:09:41 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_del_archive_flags', 'DELETE_FLAG, RC_GIVING__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_IS_SUSTAINING_GIVER', 'RC_GIVING__IS_SUSTAINING_GIVER')
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_IS_SHOPPER', 'RC_GIVING__IS_SHOPPER')
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_IS_MAJOR_GIVER', 'RC_GIVING__IS_MAJOR_GIVER')
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_IS_LIFETIME', 'RC_GIVING__IS_LIFETIME')
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_IS_HISTORICAL', 'RC_GIVING__IS_HISTORICAL')
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_IS_ANNUAL', 'RC_GIVING__IS_ANNUAL')
+-- 4/15/2013 1:09:42 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_HISTORICAL_YEAR', 'RC_GIVING__HISTORICAL_YEAR')
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_GIVING_LEVEL_STATUS', 'RC_GIVING__GIVING_LEVEL_STATUS')
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_CURRENT_YEAR', 'RC_GIVING__CURRENT_YEAR')
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_AFFILIATION', 'RC_GIVING__AFFILIATION')
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_ACTIVITY_TYPE', 'RC_GIVING__ACTIVITY_TYPE')
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_CURRENT_ANNUAL_AMOUNT', get_column_name('RC_GIVING__CURRENT_ANNUAL_AMOUNT__C', 'RC_GIVING__SUMMARY'))
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_CURRENT_AMOUNT', 'RC_GIVING__CURRENT_AMOUNT')
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_CURRENT_CLOSED_AMOUNT', get_column_name('RC_GIVING__CURRENT_CLOSED_AMOUNT__C', 'RC_GIVING__SUMMARY'))
+-- 4/15/2013 1:09:43 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_PREVIOUS_AMOUNT', 'RC_GIVING__PREVIOUS_AMOUNT')
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_MOST_RECENT_GIVING', 'RC_GIVING__MOST_RECENT_GIVING')
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_FIRST_PAYMENT_DATE', 'RC_GIVING__FIRST_PAYMENT_DATE')
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_FIRST_CLOSED_PAYMENT', get_column_name('rC_Giving__First_Closed_Payment_Date__c', 'RC_GIVING__SUMMARY'))
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__summary__c'), 'ix_rc_giv_summ_CURRENT_EXPIRATION', 'RC_GIVING__CURRENT_EXPIRATION')
+-- 4/15/2013 1:09:44 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunitylineitem'), 'ix_opplineitem_del_archive_flags', 'DELETE_FLAG, RC_GIVING__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunitylineitem'), 'ix_opplineitem_SERVICEDATE', 'SERVICEDATE')
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('opportunitylineitem'), 'ix_opplineitem_DELIVERY_STATUE', 'RC_GIVING__DELIVERY_STATUS')
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('product2'), 'ix_product_del_archive_flags', 'DELETE_FLAG, RC_GIVING__ARCHIVE_FLAG')
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('pricebook2'), 'ix_pricebook_del_archive_flags', 'DELETE_FLAG')
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('pricebookentry'), 'ix_pricebookentry_del_archive_flags', 'DELETE_FLAG')
+-- 4/15/2013 1:09:45 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_giving__package_item__c'), 'ix_rc_giv_package_item_del_archive_flags', 'DELETE_FLAG')
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\CREATE_ARCHIVE_VIEWS.sql
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_ARCHIVE_VIEWS
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:46 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_ARCHIVE_VIEWS()
+BEGIN
+DROP TABLE IF EXISTS RS_CREATE_ARCHIVE_VIEW;
+CREATE TABLE RS_CREATE_ARCHIVE_VIEW
+as
+        select @rownum:=@rownum+1 as rownum, main.*
+        from
+        (SELECT OBJECT_NAME FROM RC_ADMIN.rd_archive_api
+        group by OBJECT_NAME) MAIN
+        , (SELECT @rownum:=0) r;
+SET @c1 = (select max(rownum) from  RS_CREATE_ARCHIVE_VIEW);
+SET @p1 = 0;
+set @r1 = '';
+set @table_name = '';
+set @object_name = '';
+
+ REPEAT
+    SET @p1 = @p1 + 1;
+    set @object_name   = (select OBJECT_NAME from RS_CREATE_ARCHIVE_VIEW where rownum = @p1);
+    SET @r1            = concat('call GET_ARCHIVE_VIEW_DEF(\'', @object_name,'\');');
+    SET @execute_def   = @r1; 
+   -- SELECT @EXECUTE_DEF;
+    PREPARE execute_def_stmt from @execute_def;
+    EXECUTE execute_def_stmt;
+    DEALLOCATE PREPARE execute_def_stmt;
+ UNTIL @p1 = @c1
+END REPEAT;
+drop table IF EXISTS RS_CREATE_ARCHIVE_VIEW;
+END
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\CAMPAIGNMEMBER_ALREADY_MEMBER_UPDATE.sql
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Executed: DROP TRIGGER IF EXISTS CAMPAIGNMEMBER_ALREADY_MEMBER_UPDATE
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Executed: CREATE TRIGGER CAMPAIGNMEMBER_ALREADY_MEMBER_UPDATE BEFORE UPDATE ON `CAMPAIGNMEMBER`
+     FOR EACH ROW 
+     BEGIN
+     DECLARE msg varchar(255);
+     IF (concat(ifnull(NEW.CAMPAIGNID,'null'),'|',ifnull(NEW.contactid,'null'),'|',ifnull(NEW.leadid, 'null'))
+     =
+     (SELECT concat(ifnull(id,'null'),'|',ifnull(contactid,'null'),'|',ifnull(leadid, 'null'))  
+    FROM CAMPAIGNMEMBER 
+    WHERE CAMPAIGNMEMBER.CAMPAIGNID= NEW.CAMPAIGNID
+      AND CAMPAIGNMEMBER.CONTACTID = NEW.CONTACTID
+      AND CAMPAIGNMEMBER.LEADID    = NEW.LEADID))
+     THEN
+        SET msg = 'Constraint CAMPAIGNMEMBER_ALREADY_MEMBER violated: Campaign/Contact/Lead pair already exists!';
+        SIGNAL sqlstate '45000' SET message_text = msg;
+     END IF; 
+     END
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:47 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\CALL_CREATE_ARCHIVE_VIEWS.sql
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Executed: CALL CREATE_ARCHIVE_VIEWS()
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\CAMPAIGNMEMBER_ALREADY_MEMBER_INSERT.sql
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Executed: DROP TRIGGER IF EXISTS CAMPAIGNMEMBER_ALREADY_MEMBER_INSERT
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Executed: CREATE TRIGGER CAMPAIGNMEMBER_ALREADY_MEMBER_INSERT BEFORE INSERT ON `CAMPAIGNMEMBER`
+     FOR EACH ROW 
+     BEGIN
+     DECLARE msg varchar(255);
+     IF (concat(ifnull(NEW.CAMPAIGNID,'null'),'|',ifnull(NEW.contactid,'null'),'|',ifnull(NEW.leadid, 'null'))
+     =
+     (SELECT concat(ifnull(id,'null'),'|',ifnull(contactid,'null'),'|',ifnull(leadid, 'null'))  
+    FROM CAMPAIGNMEMBER 
+    WHERE CAMPAIGNMEMBER.CAMPAIGNID= NEW.CAMPAIGNID
+      AND CAMPAIGNMEMBER.CONTACTID = NEW.CONTACTID
+      AND CAMPAIGNMEMBER.LEADID    = NEW.LEADID))
+     THEN
+        SET msg = 'Constraint CAMPAIGNMEMBER_ALREADY_MEMBER violated: Campaign/Contact/Lead pair already exists!';
+        SIGNAL sqlstate '45000' SET message_text = msg;
+     END IF; 
+     END
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:48 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executing script: C:\roundData\Shared\RECOVER_ACCOUNT_ARCHIVED.sql
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executed: DROP TRIGGER IF EXISTS RECOVER_ACCOUNT_ARCHIVED
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executed: CREATE TRIGGER RECOVER_ACCOUNT_ARCHIVED BEFORE UPDATE ON `ACCOUNTX`
+     FOR EACH ROW 
+     BEGIN
+     -- DECLARE @TABLE_NAME VARCHAR(255);
+     IF NEW.RC_BIOS__RECOVER_FLAG ='True'
+     THEN
+        UPDATE CAMPAIGNMEMBER      SET DELETE_FLAG = 'R' WHERE ACCOUNTID        = NEW.ID;
+        UPDATE CASEX               SET DELETE_FLAG = 'R' WHERE ACCOUNTID        = NEW.ID;
+        UPDATE TASK                SET DELETE_FLAG = 'R' WHERE ACCOUNTID        = NEW.ID;
+        UPDATE RC_BIOS__PREFERENCE SET DELETE_FLAG = 'R' WHERE RC_BIOS__ACCOUNT = NEW.ID;
+        UPDATE OPPORTUNITY         SET DELETE_FLAG = 'R' WHERE ACCOUNTID        = NEW.ID;
+        UPDATE OPPORTUNITYLINEITEM 
+          JOIN OPPORTUNITY ON OPPORTUNITY.ID = OPPORTUNITYLINEITEM.OPPORTUNITYID
+           SET OPPORTUNITYLINEITEM.DELETE_FLAG = 'R' 
+          WHERE OPPORTUNITY.ACCOUNTID = NEW.ID;
+        UPDATE RC_GIVING__PAYMENT_METHOD 
+           SET RC_GIVING__PAYMENT_METHOD.DELETE_FLAG = 'R' 
+          WHERE RC_GIVING__PAYMENT_METHOD.RC_GIVING__ACCOUNT = NEW.ID;
+        UPDATE RC_GIVING__DELIVERABLE
+          JOIN OPPORTUNITY ON OPPORTUNITY.ID = RC_GIVING__DELIVERABLE.RG_GIVING__GRANT
+           SET RC_GIVING__DELIVERABLE.DELETE_FLAG = 'R' 
+          WHERE RC_GIVING__DELIVERABLE.RC_GIVING__ACCOUNT = NEW.ID;
+          -- THIS SHOULD NOT BE REQUIRED WHEN USING THE RJ RECOVERY FUNCTIONALITY, HOWEVER THIS DOES ASSUME RJ
+--             SET @TABLE_NAME = (SELECT GET_TABLE_NAME('rc_giving__opportunity_allocation__c'));
+--         UPDATE @TABLE_NAME
+--           JOIN OPPORTUNITY ON OPPORTUNITY.ID = @TABLE_NAME.RC_GIVING__OPPORTUNITY
+--           SET @TABLE_NAME.DELETE_FLAG = 'R' 
+--           WHERE OPPORTUNITY.ACCOUNTID = NEW.ID;
+--             SET @TABLE_NAME = (SELECT GET_TABLE_NAME('rc_giving__opportunity_credit__c'));
+--         UPDATE @TABLE_NAME
+--           JOIN OPPORTUNITY ON OPPORTUNITY.ID = @TABLE_NAME.RC_GIVING__OPPORTUNITY
+--           SET @TABLE_NAME.DELETE_FLAG = 'R' 
+--           WHERE OPPORTUNITY.ACCOUNTID = NEW.ID;
+         UPDATE ACCOUNTX SET RC_BIOS__RECOVER__FLAG = 'False' WHERE ID        = NEW.ID;           
+     END IF; 
+     END
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executing Create_Bio_Functions group
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executing Create_Giving_Functions group
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\CONTACT_PRIMARY_GUID.sql
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS CONTACT_PRIMARY_GUID
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `CONTACT_PRIMARY_GUID`(ACCOUNTID_IN VARCHAR(18)) RETURNS varchar(18) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE CONTACT1 VARCHAR(18);
+     SET CONTACT1 = 
+    (
+        select sel.ID
+        from
+          (select @rownum:=@rownum+1 as rank, c.*
+             from V_CONTACT C
+             , (SELECT @rownum:=0) r 
+           where C.ACCOUNTID = ACCOUNTID_IN
+          and C.RC_BIOS__MINOR_CHILD = 'false'
+          and C.RC_BIOS__ACTIVE = 'true'
+          and C.RC_BIOS__PREFERRED_CONTACT = 'true'
+          order by createddate) SEL
+          where SEL.rank = 1);
+     RETURN CONTACT1;
+    END
+-- 4/15/2013 1:09:49 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\FUNCTIONS\GIVING_LAST_PAYMENT_DATE.sql
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GIVING_LAST_PAYMENT_DATE
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Executed: CREATE FUNCTION GIVING_LAST_PAYMENT_DATE(GIVINGID_IN VARCHAR(18)) RETURNS DATE
+    DETERMINISTIC
+BEGIN
+     DECLARE LAST_PAYMENT_DATE DATE;
+     SET LAST_PAYMENT_DATE = 
+    (
+      Select CLOSEDATE
+        from V_opportunity o
+        where RC_GIVING__PARENT = GIVINGID_IN
+        AND STAGENAME IN ('COMPLETED', 'PARTIALLY COMPLETE')
+        ORDER BY CLOSEDATE DESC
+        LIMIT 1 
+        );        
+     RETURN LAST_PAYMENT_DATE;
+    END
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\CONTACT_SECONDARY_GUID.sql
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS CONTACT_SECONDARY_GUID
+-- 4/15/2013 1:09:50 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `CONTACT_SECONDARY_GUID`(ACCOUNTID_IN VARCHAR(18)) RETURNS varchar(18) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE CONTACT2 VARCHAR(18);
+     SET CONTACT2 = 
+    (
+        select sel.ID
+        from
+          (select @rownum:=@rownum+1 as rank, c.*
+             from V_CONTACT C
+             , (SELECT @rownum:=0) r 
+           where C.ACCOUNTID = ACCOUNTID_IN
+          and C.RC_BIOS__MINOR_CHILD = 'false'
+          and C.RC_BIOS__ACTIVE = 'true'
+          and C.RC_BIOS__PREFERRED_CONTACT <> 'true'
+          order by createddate) SEL
+          where SEL.rank = 1);
+     RETURN CONTACT2;
+    END
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_BALANCE.sql
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GIVING_PLEDGE_BALANCE
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executed: CREATE FUNCTION GIVING_PLEDGE_BALANCE(GIVINGID_IN VARCHAR(18)) RETURNS DECIMAL(22,6)
+    DETERMINISTIC
+BEGIN
+     DECLARE BALANCE DECIMAL(22,6);
+     SET BALANCE = 
+    (
+      Select get_column_name('rc_giving__expected_giving_amount__c', 'opportunity') - rc_giving__closed_amount
+        from V_opportunity o
+        where id = GIVINGID_IN);
+     RETURN BALANCE;
+    END
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_CATEGORY.sql
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS PREFERENCE_CATEGORY
+-- 4/15/2013 1:09:51 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `PREFERENCE_CATEGORY`(CATEGORY_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE RESULT VARCHAR(18);
+     SET RESULT = 
+    (
+      SELECT rc_bios__CATEGORY
+        FROM s_preference_account
+       WHERE     ifnull(RC_BIOS__START_DATE, curdate()) >= curdate()
+             AND ifnull(rc_bios__end_date, curdate()) <= curdate()
+             AND rc_bios__active = 'true'
+             AND rc_bios__category = CATEGORY_IN
+      );
+     RETURN RESULT;
+    END
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\FUNCTIONS\GIVING_PLEDGE_PAST_DUE_BALANCE.sql
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GIVING_PLEDGE_PAST_DUE_BALANCE
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Executed: CREATE FUNCTION GIVING_PLEDGE_PAST_DUE_BALANCE(GIVINGID_IN VARCHAR(18)) RETURNS DECIMAL(22,6)
+    DETERMINISTIC
+BEGIN
+     DECLARE PAST_DUE_BALANCE DECIMAL(22,6);
+     SET PAST_DUE_BALANCE = 
+    (
+      Select SUM(AMOUNT) - SUM(Rc_GIVING__CLOSE_DATE)
+        from V_opportunity o
+        where (id = GIVINGID_IN
+        OR RC_GIVING__PARENT = GIVINGID_ID)
+        and closedate <= curdate()
+        );
+     RETURN PAST_DUE_BALANCE;
+    END
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:52 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\PREFERENCE_TYPE.sql
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS PREFERENCE_TYPE
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `PREFERENCE_TYPE`(CATEGORY_IN VARCHAR(255), TYPE_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE RESULT VARCHAR(18);
+     SET RESULT = 
+    (
+      SELECT rc_bios__type
+        FROM s_preference_account
+       WHERE     ifnull(RC_BIOS__START_DATE, curdate()) >= curdate()
+             AND ifnull(rc_bios__end_date, curdate()) <= curdate()
+             AND rc_bios__active = 'true'
+             AND rc_bios__category = CATEGORY_IN
+             AND rc_bios__type = TYPE_IN
+      );
+     RETURN RESULT;
+    END
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\FUNCTIONS\GIVING_RENEWAL_GIFT_COUNT.sql
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GIVING_RENEWAL_GIFT_COUNT
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `GIVING_RENEWAL_GIFT_COUNT`(
+   AFFILIATION_IN      VARCHAR(255),
+   ACTIVITY_TYPE_IN    VARCHAR(255),
+   ACCOUNT_GUID_IN     VARCHAR(18))
+   RETURNS INTEGER(18)
+   DETERMINISTIC
+   BEGIN
+      DECLARE RESULT   INTEGER(18);
+      SET RESULT =
+             (SELECT count(id)
+                FROM opportunity o
+               WHERE     o.RC_GIVING__GIVING_TYPE IN
+                            ('New', 'Renewal', 'Rejoin', 'Upgrade/Reset')
+                     AND rc_giving__is_giving = 'True'
+                     AND rc_giving__affiliation = AFFILIATION_IN
+                     AND rc_giving__activity_type = ACTIVITY_TYPE_IN
+                     AND accountid = ACCOUNT_GUID_IN);
+      RETURN RESULT;
+   END
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:53 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_ACCOUNT.sql
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SALUTATION_INSIDE_ACCOUNT
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Executed: CREATE FUNCTION SALUTATION_INSIDE_ACCOUNT(ACCOUNTID varchar(18)) RETURNS varchar(255) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+      DECLARE SAL_LINE_1 VARCHAR(240);
+      SET SAL_LINE_1 = 
+        (SELECT replace(        
+                                  case 
+                          # no title and no secondary contact
+                            when V_CONTACT_PRIMARY.SALUTATION is null and V_CONTACT_SECONDARY.ID is null
+                              then IFNULL(V_CONTACT_PRIMARY.FIRSTNAME, 'Friend')
+                          # both titles null and with secondary contact
+                             when V_CONTACT_PRIMARY.SALUTATION is null and V_CONTACT_SECONDARY.SALUTATION is null and V_CONTACT_SECONDARY.ID is not null
+                              then concat(IFNULL(V_CONTACT_PRIMARY.FIRSTNAME, 'Friend'),' and ', IFNULL(V_CONTACT_SECONDARY.FIRSTNAME, 'Friend'))
+                          # both have titles and last names the same
+                            when V_CONTACT_PRIMARY.SALUTATION is not null and V_CONTACT_SECONDARY.SALUTATION is not null and v_contact_secondary.LASTNAME = v_contact_primary.LASTNAME
+                              then concat(V_CONTACT_PRIMARY.SALUTATION, ' and ', V_CONTACT_SECONDARY.SALUTATION, ' ',v_contact_PRIMARY.LASTNAME)
+                          # both have titles and last names are different
+                            when V_CONTACT_PRIMARY.SALUTATION is not null and V_CONTACT_SECONDARY.SALUTATION is not null and v_contact_secondary.LASTNAME <> v_contact_primary.LASTNAME
+                             then concat(V_CONTACT_PRIMARY.SALUTATION, ' ', V_CONTACT_PRIMARY.LASTNAME,' and ', v_contact_secondary.SALUTATION, ' ', V_CONTACT_SECONDARY.LASTNAME)
+                          # has title no secondary contact
+                           when V_CONTACT_PRIMARY.SALUTATION is NOT null and V_CONTACT_SECONDARY.ID is null
+                              then CONCAT(V_CONTACT_PRIMARY.SALUTATION, ' ' , v_contact_primary.LASTNAME)
+                           # mismatch on title
+                            when v_contact_primary.SALUTATION is not null and v_contact_SECONDARY.SALUTATION is null and v_contact_secondary.FIRSTNAME is not null
+                             then concat( v_contact_PRIMARY.FIRSTNAME,' and ', v_contact_secondary.FIRSTNAME)
+                          when v_contact_primary.SALUTATION is null and v_contact_SECONDARY.SALUTATION is NOT null and v_contact_secondary.FIRSTNAME is not null
+                             then concat( v_contact_PRIMARY.FIRSTNAME,' and ', v_contact_secondary.FIRSTNAME)
+                            end ,' ,', ' ')
+             FROM  v_account
+                   LEFT JOIN v_contact v_contact_primary 
+                          ON 
+                                 v_account.ID = v_contact_primary.ACCOUNTID 
+                             AND v_contact_primary.id =  CONTACT_PRIMARY_GUID(v_account.ID)
+                   LEFT JOIN v_contact v_contact_secondary 
+                          ON 
+                                 v_account.ID = v_contact_secondary.ACCOUNTID 
+                             AND v_contact_secondary.ID = CONTACT_SECONDARY_GUID(v_account.ID)
+        WHERE V_ACCOUNT.ID=ACCOUNTID
+        limit 1);
+     RETURN SAL_LINE_1;
+    END
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\FUNCTIONS\GIVING_ADDITIONAL_GIFT_COUNT.sql
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS GIVING_ADDITIONAL_GIFT_COUNT
+-- 4/15/2013 1:09:54 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Executed: CREATE FUNCTION `GIVING_ADDITIONAL_GIFT_COUNT`(
+   AFFILIATION_IN      VARCHAR(255),
+   ACTIVITY_TYPE_IN    VARCHAR(255),
+   ACCOUNT_GUID_IN     VARCHAR(18))
+   RETURNS INTEGER(18)
+   DETERMINISTIC
+   BEGIN
+      DECLARE RESULT   INTEGER(18);
+      SET RESULT =
+             (SELECT count(id)
+                FROM opportunity o
+               WHERE     o.RC_GIVING__GIVING_TYPE IN
+                            ('Additional', 'Upgrade')
+                     AND rc_giving__is_giving = 'True'
+                     AND rc_giving__affiliation = AFFILIATION_IN
+                     AND rc_giving__activity_type = ACTIVITY_TYPE_IN
+                     AND accountid = ACCOUNT_GUID_IN);
+      RETURN RESULT;
+   END
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_INSIDE_CONTACT.sql
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SALUTATION_INSIDE_CONTACT
+-- 4/15/2013 1:09:55 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executed: CREATE FUNCTION SALUTATION_INSIDE_CONTACT(CONTACTID_IN varchar(18), SALUTATION_TYPE_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE SAL_LINE_1 VARCHAR(255);
+     SET SAL_LINE_1 =
+          (SELECT inside_salutation
+          FROM
+          (
+          SELECT '2' ordernumber, replace(
+                    CASE
+                       WHEN a.SALUTATION IS NOT NULL
+                       THEN
+                          concat(a.SALUTATION, ' ', a.LASTNAME)
+                       ELSE
+                          A.FIRSTNAME
+                    END,
+                    ',',
+                    ' ') inside_salutation
+            FROM v_contact a
+           WHERE ID = CONTACTID_IN
+          UNION
+          SELECT '1', replace(rc_bios__inside_salutation,',',' ') inside_salutation
+            FROM v_salutation
+           WHERE rc_bios__contact = CONTACTID_IN
+             AND RC_BIOS__SALUTATION_TYPE = SALUTATION_TYPE_IN
+           ORDER BY ordernumber
+           LIMIT 1) inside_sal);
+     RETURN SAL_LINE_1;
+    END
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_ACCOUNT.sql
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SALUTATION_LINE_1_ACCOUNT
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executed: CREATE FUNCTION SALUTATION_LINE_1_ACCOUNT(ACCOUNTID_IN varchar(18), SALUTATION_TYPE_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE SAL_LINE_1 VARCHAR(255);
+     SET SAL_LINE_1 =
+          (
+          select salutation_line_1
+            from
+            (
+            SELECT '2' as ordernumber,  replace(a.rc_bios__salutation, ',','') as salutation_line_1
+              FROM v_account a
+              where ID = ACCOUNTID_IN
+            UNION
+            SELECT '1', rc_bios__salutation_line_1
+              FROM v_salutation
+             WHERE rc_bios__ACCOUNT = ACCOUNTID_IN
+               AND RC_BIOS__SALUTATION_TYPE = SALUTATION_TYPE_IN
+             order by ordernumber
+             limit 1) salutation_line_1
+          );
+     RETURN SAL_LINE_1;
+    END
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executing Giving_Universe group
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:56 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\Build_RD_UNIDEF_Giving.sql
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Executed: CALL RENAME_TABLE_IF_EXISTS('RD_UNIDEF_GIVING')
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_ACCOUNT.sql
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SALUTATION_LINE_2_ACCOUNT
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Executed: CREATE FUNCTION SALUTATION_LINE_2_ACCOUNT(ACCOUNTID_IN varchar(18), SALUTATION_TYPE_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE SAL_LINE_2 VARCHAR(255);
+     SET SAL_LINE_2 =
+          (
+            SELECT replace(rc_bios__salutation_line_2,',','')
+              FROM v_salutation
+             WHERE rc_bios__ACCOUNT = ACCOUNTID_IN
+               AND RC_BIOS__SALUTATION_TYPE = SALUTATION_TYPE_IN
+             order by ordernumber
+             limit 1);
+     RETURN SAL_LINE_2;
+    END
+-- 4/15/2013 1:09:57 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:09:58 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:09:58 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:09:58 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:09:58 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:09:58 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:09:58 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:09:58 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:09:58 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\Populate_RD_UNIDEF_GIVING.sql
+-- 4/15/2013 1:09:59 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:09:59 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_GIVING
+select null, rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL, rj_field.HELPTEXT, 'U_GIVING', SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'), NULL, 'False', NULL
+from rj_field 
+where rj_field.table_name in (get_table_name('OPPORTUNITY'), get_table_name('rc_GIVING__GAU__C'), get_table_name('CAMPAIGN'))
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL)
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_GIVING VD)
+-- 4/15/2013 1:09:59 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_ACCOUNT.sql
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SALUTATION_LINE_3_ACCOUNT
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Executed: CREATE FUNCTION SALUTATION_LINE_3_ACCOUNT(ACCOUNTID_IN varchar(18), SALUTATION_TYPE_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE SAL_LINE_3 VARCHAR(255);
+     SET SAL_LINE_3 =
+          (
+          select salutation_line_3
+            from
+            (
+            SELECT '2' ordernumber, replace(
+              case when length(a.namex )>1 then c.namex else NULL end, ',', ' ') salutation_line_3
+              FROM v_account A
+              where a.typex not in ('Individual', 'Family', 'Prospect')
+                and ID = ACCOUNTID_IN
+            UNION
+            SELECT '1', rc_bios__salutation_line_3
+              FROM v_salutation
+             WHERE rc_bios__ACCOUNT = ACCOUNID_IN
+               AND RC_BIOS__SALUTATION_TYPE = SALUTATION_TYPE_IN
+             order by ordernumber
+             limit 1) salutation_line_3
+          );
+     RETURN SAL_LINE_3;
+    END
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\CREATE_UNIVERSE_GIVING.sql
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_UNIVERSE_GIVING
+-- 4/15/2013 1:10:00 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE `CREATE_UNIVERSE_GIVING`()
+BEGIN 
+
+SET @FIELD_LIST = (select 
+    group_concat(concat(
+       CASE WHEN TABLE_NAME = 'OPPORTUNITY' THEN 'V_OPPORTUNITY' 
+            WHEN TABLE_NAME = 'RC_GIVING__GAU' THEN 'V_RC_GIVING_GAU'
+            WHEN TABLE_NAME = 'CAMPAIGN' THEN 'V_CAMPAIGN'
+          ELSE TABLE_NAME
+        END
+        , 
+        '.', COLUMN_NAME, ' as ', ifnull(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME)))
+from RD_UNIDEF_GIVING
+where included = 'True'
+and UNIVERSE_name = 'U_GIVING'
+order by RD_UNIDEF_GIVING.orderby, record_number
+);
+
+SET @1 ='create or replace VIEW U_GIVING as select ';
+SET @2 = left(@FIELD_LIST, char_length(@FIELD_LIST) - 1);
+SET @3 =' from v_opportunity join v_campaign on v_campaign.id = v_opportunity.campaignid LEFT join V_RC_GIVING__GAU on v_opportunity.rc_giving__gau = V_RC_GIVING__GAU.id';
+
+
+SET @UNIVERSE_DEF = (SELECT CONCAT(@1, @2, @3) AS UNIVERSE_DEF);
+
+PREPARE UNIVERSE_DEF_STMT FROM @UNIVERSE_DEF;
+
+EXECUTE UNIVERSE_DEF_STMT;
+
+DEALLOCATE PREPARE UNIVERSE_DEF_STMT;
+
+END
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_1_CONTACT.sql
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SALUTATION_LINE_1_CONTACT
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Executed: CREATE FUNCTION SALUTATION_LINE_1_CONTACT(CONTACTID_IN varchar(18), SALUTATION_TYPE_IN VARCHAR(255)) RETURNS varchar(240) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE SAL_LINE_1 VARCHAR(255);
+     SET SAL_LINE_1 =
+          (select salutation_line_1
+            from
+            (
+            SELECT '2' ordernumber, replace(
+                      concat(
+                          case when length(c.salutation)>1            then (concat(c.salutation, ' '))           else '' end,
+                          case when length(c.firstname) >1            then (concat(c.firstname, ' '))            else '' end,
+                          case when length(c.rc_bios__middle_name) >1 then (concat(c.rc_bios__middle_name, ' ')) else '' end,
+                          case when length(c.lastname) >1             then (concat(c.lastname, ' '))             else '' end,
+                          case when length(c.rc_bios__suffix) >1 then (concat(c.rc_bios__suffix, ' ')) else '' end),
+                      ',',
+                      ' ') salutation_line_1
+              FROM v_contact c
+             WHERE ID = CONTACTID_IN
+            UNION
+            SELECT '1', rc_bios__salutation_line_1
+              FROM v_salutation
+             WHERE rc_bios__contact = CONTACTID_IN
+               AND RC_BIOS__SALUTATION_TYPE = SALUTATION_TYPE_IN
+             order by ordernumber
+             limit 1) salutation_line_1);
+     RETURN SAL_LINE_1;
+    END
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:01 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\Rename_RD_UNIDEF_GIVING.sql
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executed: call rename_invalid_field_names('RD_UNIDEF_GIVING')
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_2_CONTACT.sql
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SALUTATION_LINE_2_CONTACT
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executed: CREATE FUNCTION SALUTATION_LINE_2_CONTACT(CONTACTID_IN varchar(18), SALUTATION_TYPE_IN VARCHAR(255)) RETURNS varchar(240) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE SAL_LINE_2 VARCHAR(240);
+     SET SAL_LINE_2 =
+          (
+          select salutation_line_2
+            from
+            (
+            SELECT '2' ordernumber, replace(
+                          case when length(c.TITLE)>1 then c.TITLE else NULL end,',',' ') salutation_line_2
+              FROM v_contact c
+             WHERE rc_bios__contact = CONTACTID_IN
+            UNION
+            SELECT '1', rc_bios__salutation_line_2
+              FROM v_salutation
+             WHERE rc_bios__contact = CONTACTID_IN
+               AND RC_BIOS__SALUTATION_TYPE = SALUTATION_TYPE_IN
+             limit 1) salutation_line_2
+          );
+     RETURN SAL_LINE_2;
+    END
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\FUNCTIONS\SALUTATION_LINE_3_CONTACT.sql
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Executed: DROP FUNCTION IF EXISTS SALUTATION_LINE_3_CONTACT
+-- 4/15/2013 1:10:02 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Executed: CREATE FUNCTION SALUTATION_LINE_3_CONTACT(CONTACTID_IN varchar(18), SALUTATION_TYPE_IN VARCHAR(255)) RETURNS varchar(255) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+     DECLARE SAL_LINE_3 VARCHAR(255);
+     SET SAL_LINE_3 =
+          (
+          select salutation_line_3
+            from
+            (
+            SELECT '2' ordernumber, replace(
+              case when length(a.namex )>1 then c.namex else NULL end, ',', ' ') salutation_line_3
+              FROM v_contact c
+              join v_account a on c.ACCOUNTID = a.id
+              where a.typex not in ('Individual', 'Family', 'Prospect')
+                and ID = CONTACTID_IN
+            UNION
+            SELECT '1', rc_bios__salutation_line_3
+              FROM v_salutation
+             WHERE rc_bios__contact = CONTACTID_IN
+               AND RC_BIOS__SALUTATION_TYPE = SALUTATION_TYPE_IN
+             order by ordernumber
+             limit 1) salutation_line_3
+          );
+     RETURN SAL_LINE_3;
+    END
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Executing Giving_Items_Universe group
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Item\Build_RD_UNIDEF_Giving_ITEM.sql
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Executed: CALL RENAME_TABLE_IF_EXISTS('RD_UNIDEF_GIVING_ITEM')
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:03 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\SMARTVIEWS.sql
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executed: CREATE OR REPLACE VIEW S_PREFERRED_ADDRESS_SHIPPING AS SELECT * FROM v_rc_bios__account_address WHERE RC_BIOS__PREFERRED_SHIPPING = 'True' AND RC_BIOS__DO_NOT_MAIL <> 'True' AND RC_BIOS__UNDELIVERABLE_COUNT < 3
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executed: CREATE OR REPLACE VIEW S_PREFERRED_ADDRESS_BILLING  AS SELECT * FROM v_rc_bios__account_address WHERE RC_BIOS__PREFERRED_BILLING  = 'True' AND RC_BIOS__DO_NOT_MAIL <> 'True' AND RC_BIOS__UNDELIVERABLE_COUNT < 3
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executed: CREATE OR REPLACE VIEW S_PREFERENCE_ACCOUNT          AS SELECT ifnull(p.rc_bios__account, c.accountid) as accountid, p.* FROM v_rc_bios__preference p left join v_contact c on p.rc_bios__contact = c.id
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executed: CREATE OR REPLACE VIEW S_PREFERENCE_CONTACT          AS SELECT ifnull(p.rc_bios__contact, CONTACT_PRIMARY_GUID(p.RC_BIOS__ACCOUNT)) as contactid, p.* FROM v_rc_bios__preference p
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:04 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Item\Populate_RD_UNIDEF_GIVING_ITEM.sql
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_GIVING_ITEM
+select null, rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL, rj_field.HELPTEXT, 'U_GIVING_ITEM', SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'), NULL, 'False', NULL
+from rj_field 
+where rj_field.table_name in (get_table_name('OPPORTUNITYLINEITEM'), get_table_name('PRODUCT2'), get_table_name('PRICEBOOKENTRY'), get_table_name('PRICEBOOK2'))
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL)
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_GIVING_ITEM VD)
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Executing account_contact group
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:05 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Item\CREATE_UNIVERSE_GIVING_ITEM.sql
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_UNIVERSE_GIVING_ITEM
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_UNIVERSE_GIVING_ITEM()
+BEGIN 
+
+SET @FIELD_LIST = (select 
+    group_concat(concat(
+       CASE WHEN TABLE_NAME = 'OPPORTUNITYLINEITEM' THEN 'V_OPPORTUNITYLINEITEM' 
+            WHEN TABLE_NAME = 'PRODUCT2' THEN 'V_PRODUCT2'
+            WHEN TABLE_NAME = 'PRICEBOOK2' THEN 'V_PRICEBOOK2'
+            WHEN TABLE_NAME = 'PRICEBOOKENTRY' THEN 'v_PRICEBOOKENTRY'
+          ELSE TABLE_NAME
+        END
+        , 
+        '.', COLUMN_NAME, ' as ', ifnull(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME)))
+from RD_UNIDEF_GIVING_ITEM
+where included = 'True'
+and UNIVERSE_name = 'U_GIVING_ITEM'
+order by RD_UNIDEF_GIVING_ITEM.orderby, record_number
+);
+
+
+SET @1 ='create or replace VIEW U_GIVING_ITEM as select ';
+SET @2 = left(@FIELD_LIST, char_length(@FIELD_LIST) - 1);
+SET @3 =' from v_opportunitylineitem join v_pricebookentry on v_pricebookentry.id = V_OPPORTUNITYLINEITEM.pricebookentryid join v_pricebook2 on v_pricebook2.ID = v_pricebookentry.PRICEBOOK2ID join v_product2 on v_product2.ID = v_pricebookentry.PRODUCT2ID';
+
+SET @UNIVERSE_DEF = (SELECT CONCAT(@1, @2, @3) AS UNIVERSE_DEF);
+
+PREPARE UNIVERSE_DEF_STMT FROM @UNIVERSE_DEF;
+
+EXECUTE UNIVERSE_DEF_STMT;
+
+DEALLOCATE PREPARE UNIVERSE_DEF_STMT;
+
+END
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:06 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\Create_RD_UNIDEF_ACCOUNTCONTACT_Table.sql
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Executed: CALL RENAME_TABLE_IF_EXISTS('RD_UNIDEF_ACCOUNTCONTACT')
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Item\rename_giving_item.sql
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Executed: call rename_invalid_field_names('RD_UNIDEF_GIVING_ITEM')
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:07 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\Populate_RD_UNIDEF_ACCOUNTCONTACT_Table.sql
+-- 4/15/2013 1:10:08 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:08 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_ACCOUNTCONTACT (TABLE_NAME, FIELD_NAME, COLUMN_NAME, LABEL, HELPTEXT, UNIVERSE_NAME, UNIVERSE_FIELD_NAME, UNIVERSE_FIELD_NAME_OVERRIDE, INCLUDED, ORDERBY)
+select rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL, rj_field.HELPTEXT, 'U_ACCOUNT_CONTACT', SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'), NULL, 'False', NULL
+from rj_field 
+where rj_field.table_name in (get_table_name('account'), get_table_name('RC_BIOS__ACCOUNT_ADDRESS__c'))
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL)
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_ACCOUNTCONTACT VD)
+-- 4/15/2013 1:10:08 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:08 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:08 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_ACCOUNTCONTACT (TABLE_NAME, FIELD_NAME, COLUMN_NAME, LABEL, HELPTEXT, UNIVERSE_NAME, UNIVERSE_FIELD_NAME, UNIVERSE_FIELD_NAME_OVERRIDE, INCLUDED, ORDERBY)
+select rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, CONCAT('Primary_', rj_field.LABEL), rj_field.HELPTEXT, 'U_ACCOUNT_CONTACT', concat(SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'),'_Primary'), NULL, 'False', NULL
+from rj_field 
+where rj_field.table_name in (get_table_name('CONTACT'))
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, CONCAT('Primary_', rj_field.LABEL))  
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_ACCOUNTCONTACT VD)
+-- 4/15/2013 1:10:08 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_ACCOUNTCONTACT (TABLE_NAME, FIELD_NAME, COLUMN_NAME, LABEL, HELPTEXT, UNIVERSE_NAME, UNIVERSE_FIELD_NAME, UNIVERSE_FIELD_NAME_OVERRIDE, INCLUDED, ORDERBY)
+select rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, CONCAT('Secondary_', rj_field.LABEL), rj_field.HELPTEXT, 'U_ACCOUNT_CONTACT', CONCAT(SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'),'_Secondary'), NULL, 'False', NULL
+from rj_field where rj_field.table_name in (get_table_name('CONTACT'))
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, CONCAT('Secondary_', rj_field.LABEL))
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_ACCOUNTCONTACT VD)
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\CREATE_UNIVERSE_ACCOUNT_CONTACT.sql
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_UNIVERSE_ACCOUNT_CONTACT
+-- 4/15/2013 1:10:09 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_UNIVERSE_ACCOUNT_CONTACT()
+BEGIN 
+
+SET @FIELD_LIST = (select 
+    group_concat(concat(
+       CASE WHEN TABLE_NAME = 'RC_BIOS__ACCOUNT_ADDRESS' THEN 'S_PREFERRED_ADDRESS_BILLING' 
+            WHEN TABLE_NAME = 'CONTACT' AND RIGHT(UNIVERSE_FIELD_NAME,8) = '_Primary' THEN 'CONTACT_PRIMARY'
+            WHEN TABLE_NAME = 'CONTACT' AND RIGHT(UNIVERSE_FIELD_NAME,10) = '_Secondary' THEN 'CONTACT_SECONDARY'
+            WHEN TABLE_NAME = 'ACCOUNTX' THEN 'V_ACCOUNT'
+            WHEN TABLE_NAME = 'ACCOUNT' THEN 'V_ACCOUNT'
+          ELSE TABLE_NAME
+        END
+        , 
+        '.', COLUMN_NAME, ' as ', ifnull(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME)))
+from RD_UNIDEF_ACCOUNTCONTACT
+where included = 'True'
+and UNIVERSE_name = 'U_ACCOUNT_CONTACT'
+order by RD_UNIDEF_ACCOUNTCONTACT.orderby, record_number
+);
+
+SET @1 ='create or replace VIEW U_ACCOUNT_CONTACT as select ';
+SET @2 = left(@FIELD_LIST, char_length(@FIELD_LIST) - 1);
+SET @3 =' FROM V_ACCOUNT LEFT JOIN V_CONTACT AS CONTACT_PRIMARY ON CONTACT_PRIMARY.ID = CONTACT_PRIMARY_GUID(V_ACCOUNT.ID)LEFT JOIN V_CONTACT AS CONTACT_SECONDARY ON CONTACT_SECONDARY.ID = CONTACT_SECONDARY_GUID(V_ACCOUNT.ID)LEFT JOIN S_PREFERRED_ADDRESS_BILLING ON S_preferred_address_Billing.rc_bios__account = v_account.id;';
+SET @UNIVERSE_DEF = (SELECT CONCAT(@1, @2, @3) AS UNIVERSE_DEF);
+
+PREPARE UNIVERSE_DEF_STMT FROM @UNIVERSE_DEF;
+
+EXECUTE UNIVERSE_DEF_STMT;
+
+DEALLOCATE PREPARE UNIVERSE_DEF_STMT;
+
+END
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Executing Giving_Summary_Universe_Current_Annual group
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\Rename_Account_Contact.sql
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Executed: call rename_invalid_field_names('RD_UNIDEF_ACCOUNTCONTACT')
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:10 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_CURRENT.sql
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Executed: CALL RENAME_TABLE_IF_EXISTS('RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT')
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:11 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.sql
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT
+select null, rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL, rj_field.HELPTEXT, 'U_GIVING_SUMMARY_ANNUAL_CURRENT', SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'), NULL, 'False', NULL
+from rj_field 
+where rj_field.table_name = 'rc_giving__SUMMARY'
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL)
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT VD)
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT.sql
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT
+-- 4/15/2013 1:10:12 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT()
+BEGIN 
+
+SET @FIELD_LIST = (select 
+    group_concat(concat(
+       CASE WHEN TABLE_NAME = 'rc_giving__summary' THEN 'v_rc_GIVING__SUMMARY'
+          ELSE TABLE_NAME
+        END
+        , 
+        '.', COLUMN_NAME, ' as ', ifnull(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME)))
+from RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT
+where included = 'True'
+and UNIVERSE_name = 'U_GIVING_SUMMARY_ANNUAL_CURRENT'
+order by RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT.orderby, record_number
+);
+
+SET @1 ='create or replace VIEW U_GIVING_SUMMARY_ANNUAL_CURRENT as select ';
+SET @2 = left(@FIELD_LIST, char_length(@FIELD_LIST) - 1);
+SET @3 =' from v_rc_GIVING__SUMMARY where rc_giving__activity_type = \'Membership\' and rc_giving__is_historical = \'False\' and rc_giving__is_lifetime = \'False\'';
+
+SET @UNIVERSE_DEF = (SELECT CONCAT(@1, @2, @3) AS UNIVERSE_DEF);
+
+PREPARE UNIVERSE_DEF_STMT FROM @UNIVERSE_DEF;
+
+EXECUTE UNIVERSE_DEF_STMT;
+
+DEALLOCATE PREPARE UNIVERSE_DEF_STMT;
+
+END
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\rename_GIVING_SUMMARY_ANNUAL_CURRENT.sql
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Executed: call rename_invalid_field_names('RD_UNIDEF_GIVING_SUMMARY_ANNUAL_CURRENT')
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Executing Giving_Summary_Universe_Lifetime group
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:13 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_RD_UNIDEF_Giving_SUMMARY_ANNUAL_LIFETIME.sql
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Executed: CALL RENAME_TABLE_IF_EXISTS('RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME')
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:14 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Populate_RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.sql
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME
+select null, rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL, rj_field.HELPTEXT, 'U_GIVING_SUMMARY_ANNUAL_LIFETIME', SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'), NULL, 'False', NULL
+from rj_field 
+where rj_field.table_name = 'rc_giving__SUMMARY'
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL)
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME VD)
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME.sql
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME()
+BEGIN 
+
+SET @FIELD_LIST = (select 
+    group_concat(concat(
+       CASE WHEN TABLE_NAME = 'rc_giving__summary' THEN 'v_rc_GIVING__SUMMARY'
+          ELSE TABLE_NAME
+        END
+        , 
+        '.', COLUMN_NAME, ' as ', ifnull(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME)))
+from RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME
+where included = 'True'
+and UNIVERSE_name = 'U_GIVING_SUMMARY_ANNUAL_LIFETIME'
+order by RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME.orderby, record_number
+);
+
+SET @1 ='create or replace VIEW U_GIVING_SUMMARY_ANNUAL_LIFETIME as select ';
+SET @2 = left(@FIELD_LIST, char_length(@FIELD_LIST) - 1);
+SET @3 =' from v_rc_GIVING__SUMMARY where rc_giving__activity_type = \'Membership\' and rc_giving__is_lifetime = \'True\'';
+
+SET @UNIVERSE_DEF = (SELECT CONCAT(@1, @2, @3) AS UNIVERSE_DEF);
+
+PREPARE UNIVERSE_DEF_STMT FROM @UNIVERSE_DEF;
+
+EXECUTE UNIVERSE_DEF_STMT;
+
+DEALLOCATE PREPARE UNIVERSE_DEF_STMT;
+
+END
+-- 4/15/2013 1:10:15 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\rename_giving_summary_annual_lifetime.sql
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Executed: call rename_invalid_field_names('RD_UNIDEF_GIVING_SUMMARY_ANNUAL_LIFETIME')
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:16 PM: roundData Initial Build.log: Executing GIVING_CREDIT group
+-- 4/15/2013 1:10:18 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:18 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:18 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:18 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:18 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:18 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:18 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Credit\Build_RD_UNIDEF_Giving_Credit.sql
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Executed: CALL RENAME_TABLE_IF_EXISTS('RD_UNIDEF_GIVING_CREDIT')
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:19 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:20 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Credit\Populate_RD_UNIDEF_GIVING_CREDIT.sql
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_GIVING_CREDIT
+select null, rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL, rj_field.HELPTEXT, 'U_GIVING_CREDIT', SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'), NULL, 'False', NULL
+from rj_field 
+where rj_field.table_name in ('OPPORTUNITY', 'rc_GIVING__GAU', 'CAMPAIGN', 'rc_giving__opportunity_credit')
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL)
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_GIVING_CREDIT VD)
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Credit\CREATE_UNIVERSE_GIVING_CREDIT.sql
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_UNIVERSE_GIVING_CREDIT
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_UNIVERSE_GIVING_CREDIT()
+BEGIN 
+
+SET @FIELD_LIST = (select 
+    group_concat(concat(
+       CASE WHEN TABLE_NAME = 'OPPORTUNITY' THEN 'V_OPPORTUNITY' 
+            WHEN TABLE_NAME = 'RC_GIVING__GAU' THEN 'V_RC_GIVING__GAU'
+            WHEN TABLE_NAME = 'CAMPAIGN' THEN 'V_CAMPAIGN'
+            WHEN TABLE_NAME = 'RC_GIVING__OPPORTUNITY_CREDIT' THEN 'V_RC_GIVING__OPPORTUNITY_CREDIT'
+          ELSE TABLE_NAME
+        END
+        , 
+        '.', COLUMN_NAME, ' as ', ifnull(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME)))
+from RD_UNIDEF_GIVING_CREDIT
+where included = 'True'
+and UNIVERSE_name = 'U_GIVING_CREDIT'
+order by RD_UNIDEF_GIVING_CREDIT.orderby, record_number
+);
+
+
+SET @1 ='create or replace VIEW U_GIVING_CREDIT as select ';
+SET @2 = left(@FIELD_LIST, char_length(@FIELD_LIST) - 1);
+SET @3 =' from v_opportunity left join V_RC_GIVING__GAU on v_opportunity.RC_GIVING__GAU = V_RC_GIVING__GAU.ID left join v_campaign on v_opportunity.CAMPAIGNID = v_campaign.id left join V_RC_GIVING__OPPORTUNITY_CREDIT on V_RC_GIVING__OPPORTUNITY_CREDIT.RC_GIVING__OPPORTUNITY = v_opportunity.ID';
+
+SET @UNIVERSE_DEF = (SELECT CONCAT(@1, @2, @3) AS UNIVERSE_DEF);
+
+PREPARE UNIVERSE_DEF_STMT FROM @UNIVERSE_DEF;
+
+EXECUTE UNIVERSE_DEF_STMT;
+
+DEALLOCATE PREPARE UNIVERSE_DEF_STMT;
+
+END
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:21 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Credit\rename_giving_credit.sql
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Executed: call rename_invalid_field_names('RD_UNIDEF_GIVING_CREDIT')
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Executing Giving_Allocation group
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Allocation\Build_RD_UNIDEF_Giving_ALLOCATION.sql
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Executed: CALL RENAME_TABLE_IF_EXISTS('RD_UNIDEF_GIVING_ALLOCATION')
+-- 4/15/2013 1:10:22 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Allocation\Populate_RD_UNIDEF_GIVING_ALLOCATION.sql
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Executed: INSERT INTO RD_UNIDEF_GIVING_ALLOCATION
+select null, rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL, rj_field.HELPTEXT, 'U_GIVING_ALLOCATION', SYS_TRANSLATE(rj_field.label,' -?/\():;.','_____________'), NULL, 'False', NULL
+from rj_field 
+where rj_field.table_name in ('OPPORTUNITY', 'rc_GIVING__GAU', 'CAMPAIGN', get_table_name('RC_GIVING__OPPORTUNITY_ALLOCATION__C'))
+AND CONCAT(rj_field.TABLE_NAME, rj_field.FIELD_NAME, rj_field.COLUMN_NAME, rj_field.LABEL)
+NOT IN (SELECT CONCAT(VD.TABLE_NAME, VD.FIELD_NAME, VD.COLUMN_NAME, VD.LABEL) FROM RD_UNIDEF_GIVING_ALLOCATION VD)
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:23 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Allocation\CREATE_UNIVERSE_GIVING_ALLOCATION.sql
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Executed: DROP PROCEDURE IF EXISTS CREATE_UNIVERSE_GIVING_ALLOCATION
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Executed: CREATE PROCEDURE CREATE_UNIVERSE_GIVING_ALLOCATION()
+BEGIN 
+
+SET @FIELD_LIST = (select 
+    group_concat(concat(
+       CASE WHEN TABLE_NAME = 'OPPORTUNITY' THEN 'V_OPPORTUNITY' 
+            WHEN TABLE_NAME = 'RC_GIVING__GAU' THEN 'V_RC_GIVING__GAU'
+            WHEN TABLE_NAME = 'CAMPAIGN' THEN 'V_CAMPAIGN'
+            WHEN TABLE_NAME = get_table_name('RC_GIVING__OPPORTUNITY_ALLOCATION__C') THEN 'V_RC_GIVING__OPPORTUNITY_ALLOCATION'
+          ELSE TABLE_NAME
+        END
+        , 
+        '.', COLUMN_NAME, ' as ', ifnull(UNIVERSE_FIELD_NAME_OVERRIDE, UNIVERSE_FIELD_NAME)))
+from RD_UNIDEF_GIVING_ALLOCATION
+where included = 'True'
+and UNIVERSE_name = 'U_GIVING_ALLOCATION'
+order by RD_UNIDEF_GIVING_ALLOCATION.orderby, record_number
+);
+
+
+SET @1 ='create or replace VIEW U_GIVING_ALLOCATION as select ';
+SET @2 = left(@FIELD_LIST, char_length(@FIELD_LIST) - 1);
+SET @3 =' from v_opportunity left join V_RC_GIVING__GAU on v_opportunity.RC_GIVING__GAU = V_RC_GIVING__GAU.ID left join v_campaign on v_opportunity.CAMPAIGNID = v_campaign.id left join V_RC_GIVING__OPPORTUNITY_ALLOCATION on V_RC_GIVING__OPPORTUNITY_ALLOCATION.RC_GIVING__OPPORTUNITY = v_opportunity.ID';
+
+SET @UNIVERSE_DEF = (SELECT CONCAT(@1, @2, @3) AS UNIVERSE_DEF);
+
+PREPARE UNIVERSE_DEF_STMT FROM @UNIVERSE_DEF;
+
+EXECUTE UNIVERSE_DEF_STMT;
+
+DEALLOCATE PREPARE UNIVERSE_DEF_STMT;
+
+END
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Allocation\rename_giving_allocation.sql
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Executed: call rename_invalid_field_names('RD_UNIDEF_GIVING_ALLOCATION')
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:24 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Connect\rC_Connect_Indexes.sql
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_connect__campaign_product__c'), 'ix_rc_con_camp_prod_del_flag', 'DELETE_FLAG')
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_connect__campaign_product__c'), 'ix_rc_con_camp_prod_activity_type', 'rc_connect__activity_type')
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Executed: CALL create_index_if_not_exists(get_table_name('rc_connect__campaign_product__c'), 'ix_rc_con_camp_prod_affiliation', 'rc_connect__affiliation')
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:25 PM: roundData Initial Build.log: Executing script: C:\roundData\Admin\Monitoring\CorR_view_rS_Errors.sql
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Executed: create or replace view rS_Errors
+as
+select
+job_type,
+concat(month(run_timestamp),'/',
+      dayofmonth(run_timestamp),'/',
+      year(run_timestamp)) AS error_date,
+      object_name as error_object, 
+      error_message,
+      count(*) as error_count
+from rj4sf_error
+group by
+job_type,
+  concat(month(run_timestamp),'/',
+      dayofmonth(run_timestamp),'/',
+      year(run_timestamp)),
+      object_name, 
+      error_message
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Connect\o_solicitation.sql
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Executed: CREATE OR REPLACE VIEW O_SOLICITATION
+AS
+SELECT
+       -- ACCOUNT AND CONTACT NUMBERS
+        V_ACCOUNT.ID ACCOUNT_GUID,
+        V_ACCOUNT.RC_BIOS__EXTERNAL_ID ACCOUNT_EXTERNAL_ID,
+        V_ACCOUNT.RC_BIOS__PREFERRED_CONTACT PRIMARY_CONTACT_GUID,
+        CONTACT_SECONDARY_GUID(V_ACCOUNT.ID) SECONDARY_CONTACT_GUID,
+        -- ACCOUNT NAME AND ADDRESS INFO
+        V_ACCOUNT.RC_BIOS__SALUTATION,
+        S_PREFERRED_ADDRESS_BILLING.RC_BIOS__STREET_LINE_1,
+        S_PREFERRED_ADDRESS_BILLING.RC_BIOS__STREET_LINE_2,
+        S_PREFERRED_ADDRESS_BILLING.RC_BIOS__CITY,
+        S_PREFERRED_ADDRESS_BILLING.RC_BIOS__STATE,
+        S_PREFERRED_ADDRESS_BILLING.RC_BIOS__POSTAL_CODE,
+        S_PREFERRED_ADDRESS_BILLING.RC_BIOS__COUNTRY,
+        -- CONTACT NAMES
+        V_CONTACT_P.SALUTATION PRIMARY_TITLE,
+        V_CONTACT_P.FIRSTNAME PRIMARY_FIRSTNAME,
+        V_CONTACT_P.RC_BIOS__MIDDLE_NAME PRIMARY_MIDDLENAME,
+        V_CONTACT_P.LASTNAME PRIMARY_LASTNAME,
+        SALUTATION_LINE_1_CONTACT(V_ACCOUNT.RC_BIOS__PREFERRED_CONTACT) PRIMARY_FULLNAME,
+        V_CONTACT_S.SALUTATION SECONDARY_TITLE,
+        V_CONTACT_S.FIRSTNAME SECONDARY_FIRSTNAME,
+        V_CONTACT_S.RC_BIOS__MIDDLE_NAME SECONDARY_MIDDLENAME,
+        V_CONTACT_S.LASTNAME SECONDARY_LASTNAME,
+        SALUTATION_LINE_1_CONTACT(CONTACT_SECONDARY_GUID(V_ACCOUNT.ID)) SECONDARY_FULLNAME,
+        V_ACCOUNT.RC_BIOS__PREFERRED_CONTACT_EMAIL PRIMARY_EMAIL,
+        V_ACCOUNT.RC_BIOS__PREFERRED_CONTACT_PHONE PRIMARY_PHONE,
+        -- GIVING SUMMARY INFORMATION
+        V_RC_GIVING__SUMMARY.RC_GIVING__FIRST_GIVING_AMOUNT FIRST_GIVING_AMOUNT, 
+        V_RC_GIVING__SUMMARY.RC_GIVING__FIRST_GIVING_DATE FIRST_GIVING_DATE,
+        V_RC_GIVING__SUMMARY.RC_GIVING__CURRENT_RENEWAL_AMOUNT CURRENT_RENEWAL_AMOUNT,
+        V_RC_GIVING__SUMMARY.RC_GIVING__CURRENT_ADDITIONAL_AMOUNT CURRENT_ADDITIONAL_AMOUNT,
+        V_RC_GIVING__SUMMARY.RC_GIVING__GIVING_LEVEL_EXPIRATION_DATE EXPIRATION_DATE,
+        V_RC_GIVING__SUMMARY.RC_GIVING__CURRENT_AMOUNT CURRENT_AMOUNT,
+        V_RC_GIVING__SUMMARY.RC_GIVING__IS_MAJOR_GIVER MAJOR_DONOR,
+        V_RC_GIVING__SUMMARY.RC_GIVING__IS_SUSTAINING_GIVER SUSTAINER,
+        V_RC_GIVING__SUMMARY.RC_GIVING__MOST_RECENT_GIVING_AMOUNT MOST_RECENT_GIVING_AMOUNT,
+        V_RC_GIVING__SUMMARY.RC_GIVING__MOST_RECENT_GIVING_DATE MOST_RECENT_GIVING_DATE,
+        V_RC_GIVING__SUMMARY.RC_GIVING__PREVIOUS_AMOUNT PREVIOUS_AMOUNT,
+        V_RC_GIVING__SUMMARY.RC_GIVING__PREVIOUS_YEAR PREVIOUS_YEAR
+  FROM V_ACCOUNT
+  JOIN V_RC_GIVING__SUMMARY ON V_ACCOUNT.ID = V_RC_GIVING__SUMMARY.RC_GIVING__ACCOUNT
+  JOIN V_CONTACT AS V_CONTACT_P ON V_ACCOUNT.RC_BIOS__PREFERRED_CONTACT = V_CONTACT_P.ID
+  LEFT JOIN V_CONTACT AS V_CONTACT_S ON CONTACT_SECONDARY_GUID(V_ACCOUNT.ID) = V_CONTACT_S.ID
+  LEFT JOIN S_PREFERRED_ADDRESS_BILLING ON S_PREFERRED_ADDRESS_BILLING.RC_BIOS__ACCOUNT = V_ACCOUNT.ID
+ WHERE V_RC_GIVING__SUMMARY.RC_GIVING__ACTIVITY_TYPE = 'MEMBERSHIP' 
+   AND V_RC_GIVING__SUMMARY.RC_GIVING__IS_MOST_RECENT = 'TRUE'
+   AND V_RC_GIVING__SUMMARY.RC_GIVING__IS_LIFETIME = 'FALSE'
+   -- CUSTOMIZED FOR CLIENT 
+   AND V_RC_GIVING__SUMMARY.RC_GIVING__AFFILIATION = 'GROUP 1'
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:26 PM: roundData Initial Build.log: Executing script: C:\roundData\Admin\Monitoring\CorR_view_rS_Last_Synced.sql
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Executed: create or replace view rS_Last_Synced
+as
+select object_name ls_object_name, max(QUERY_RESTART_DATE) Last_Synced
+from rj_history
+group by object_name
+order by max(QUERY_RESTART_DATE) asc
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Connect\o_premimum_fulfillment.sql
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Executed: create or replace view o_premium_fulfillment
+as
+SELECT v_product2.PRODUCTCODE AS PRODUCTCODE,
+    v_product2.RC_GIVING__VENDOR AS VENDOR,
+    v_product2.RC_GIVING__VENDOR_REFERENCE_NUMBER AS VENDOR_REFERENCE_NUMBER,
+    v_product2.DESCRIPTION AS DESCRIPTION,
+    v_opportunitylineitem.QUANTITY AS QUANTITY,
+    ifnull(v_opportunitylineitem.RC_GIVING__BENEFICIARY, v_account.id) AS Recipient_ID,
+    v_account.RC_BIOS__SALUTATION AS Recipient,
+    (CASE WHEN (v_opportunitylineitem.RC_GIVING__DELIVERY_METHOD = 'BILLING ADDRESS') THEN v_account.BILLINGSTREET     ELSE v_account.SHIPPINGSTREET     END) AS STREET_1,
+    (CASE WHEN (v_opportunitylineitem.RC_GIVING__DELIVERY_METHOD = 'BILLING ADDRESS') THEN v_account.BILLINGSTREET     ELSE v_account.SHIPPINGSTREET     END) AS STREET_2,
+    (CASE WHEN (v_opportunitylineitem.RC_GIVING__DELIVERY_METHOD = 'BILLING ADDRESS') THEN v_account.BILLINGCITY       ELSE v_account.SHIPPINGCITY       END) AS CITY,
+    (CASE WHEN (v_opportunitylineitem.RC_GIVING__DELIVERY_METHOD = 'BILLING ADDRESS') THEN v_account.BILLINGSTATE      ELSE v_account.SHIPPINGSTATE      END) AS STATE,
+    (CASE WHEN (v_opportunitylineitem.RC_GIVING__DELIVERY_METHOD = 'BILLING ADDRESS') THEN v_account.BILLINGPOSTALCODE ELSE v_account.SHIPPINGPOSTALCODE END) AS POSTAL_CODE,
+    (CASE WHEN (v_opportunitylineitem.RC_GIVING__DELIVERY_METHOD = 'BILLING ADDRESS') THEN v_account.BILLINGCOUNTRY    ELSE v_account.SHIPPINGCOUNTRY    END) AS COUNTRY,
+    v_opportunity.CLOSEDATE AS CLOSEDATE,
+    v_account.RC_BIOS__PREFERRED_CONTACT_EMAIL AS EMAIL,
+    v_opportunitylineitem.ID AS GIVING_ITEM_GUID,
+    v_opportunity.RC_GIVING__SOURCE_CODE AS RC_GIVING__SOURCE_CODE,
+    v_opportunitylineitem.RC_GIVING__DELIVERY_STATUS,
+    v_opportunitylineitem.SERVICEDATE
+ FROM v_opportunitylineitem
+ JOIN v_opportunity ON v_opportunitylineitem.OPPORTUNITYID = v_opportunity.ID
+ JOIN v_account ON ifnull(v_opportunitylineitem.RC_GIVING__BENEFICIARY, v_opportunity.ACCOUNTID) = v_account.ID
+ JOIN v_pricebookentry ON v_pricebookentry.ID = v_opportunitylineitem.PRICEBOOKENTRYID
+ JOIN v_pricebook2 ON v_pricebook2.ID = v_pricebookentry.PRICEBOOK2ID
+ JOIN v_product2 ON v_product2.ID = v_pricebookentry.PRODUCT2ID
+ LEFT JOIN v_account v_account_vendor ON v_product2.RC_GIVING__VENDOR = v_account_vendor.ID
+WHERE v_opportunitylineitem.RC_GIVING__DELIVERY_STATUS NOT IN ('Sent','Delivered','Canceled')
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Executing script: C:\roundData\Admin\Monitoring\CorR_view_rS_Run_History_by_Day.sql
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Executed: create or replace view rS_Run_History_by_Day
+as
+select 
+    concat(month(QUERY_END_DATE),'/',day(QUERY_END_DATE),'/', year(QUERY_END_DATE)) date, 
+    object_name,
+    sum(RECORDS_ADDED_ETL) rS_recs_created, 
+    sum(RECORDS_UPDATED_ETL) rS_recs_updated, 
+    sum(RECORDS_DELETED_ETL) rS_recs_deleted,
+    sum(RECORDS_ADDED_SFDC) rC_recs_created,
+    sum(RECORDS_UPDATED_SFDC) rC_recs_updated,
+    sum(RECORDS_DELETED_SFDC) rC_recs_deleted,
+    sum(errors) recs_in_error
+from rj_history
+where RECORDS_ADDED_ETL+RECORDS_UPDATED_ETL+RECORDS_DELETED_ETL+RECORDS_ADDED_SFDC+RECORDS_UPDATED_SFDC+RECORDS_DELETED_SFDC+ERRORS<>0
+AND IFNULL(QUERY_END_DATE, CURDATE()) <= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+group by concat(month(QUERY_END_DATE),'/',day(QUERY_END_DATE),'/', year(QUERY_END_DATE)), object_name
+-- 4/15/2013 1:10:27 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Executing script: C:\roundData\Admin\Monitoring\CorR_view_rS_Run_History_by_Month.sql
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Executed: create or replace view rS_Run_History_by_Month
+as
+select 
+    concat(month(QUERY_END_DATE),'/',year(QUERY_END_DATE)) date, 
+    object_name,
+    sum(RECORDS_ADDED_ETL) rS_recs_created, 
+    sum(RECORDS_UPDATED_ETL) rS_recs_updated, 
+    sum(RECORDS_DELETED_ETL) rS_recs_deleted,
+    sum(RECORDS_ADDED_SFDC) rC_recs_created,
+    sum(RECORDS_UPDATED_SFDC) rC_recs_updated,
+    sum(RECORDS_DELETED_SFDC) rC_recs_deleted,
+    sum(errors) recs_in_error
+from rj_history
+where RECORDS_ADDED_ETL+RECORDS_UPDATED_ETL+RECORDS_DELETED_ETL+RECORDS_ADDED_SFDC+RECORDS_UPDATED_SFDC+RECORDS_DELETED_SFDC+ERRORS<>0
+group by concat(month(QUERY_END_DATE),'/', year(QUERY_END_DATE)), object_name
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Executing Grouping_1 group
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Bios\Build_Account_Contact.sql
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Executed: call CREATE_UNIVERSE_ACCOUNT_CONTACT
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:28 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\Build_GIVING.sql
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Executed: call CREATE_UNIVERSE_GIVING
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Item\Build_GIVING_ITEM.sql
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Executed: call CREATE_UNIVERSE_GIVING_ITEM
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:29 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Current\Build_GIVING_SUMMARY_ANNUAL_CURRENT.sql
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Executed: call CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_CURRENT
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Connection To: INSTALL
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Last schema: analytics_demo
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Default schema: analytics_demo
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Summary\rC_Giving_Summary_Annual_Lifetime\Build_GIVING_SUMMARY_ANNUAL_LIFETIME.sql
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Executed: call CREATE_UNIVERSE_GIVING_SUMMARY_ANNUAL_LIFETIME
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:30 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Allocation\Build_GIVING_ALLOCATION.sql
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Executed: call CREATE_UNIVERSE_GIVING_ALLOCATION
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Connection To: Analytics
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Connection successful
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Connection logon: rcadmin
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Last schema: analytics
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Default schema: analytics
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Auto Commit: True
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Executing script: C:\roundData\rC_Giving\rC_Giving_Credit\Build_GIVING_CREDIT.sql
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Executed Statement
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Executed: call CREATE_UNIVERSE_GIVING_CREDIT
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Query returned 0 rows
+-- 4/15/2013 1:10:32 PM: roundData Initial Build.log: Script execution complete
+-- 4/15/2013 1:10:33 PM: roundData Initial Build.log: Done
